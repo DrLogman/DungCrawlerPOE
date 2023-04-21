@@ -8,12 +8,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float jumpForce;
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] Transform feetCollider;
+    [SerializeField] Transform swordTransform;
     private bool isOnWall;
     public bool isGrounded;
     public bool doubleJump;
     public bool wallJump;
     public bool wallJumpReset;
+    int lastWallID;
 
 
     private void Update()
@@ -61,6 +62,13 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Wall")
         {
             wallJump = true;
+
+            if(lastWallID != collision.collider.GetInstanceID())
+            {
+                wallJumpReset = true;
+            }
+
+            lastWallID = collision.collider.GetInstanceID();
         }
     }
 
