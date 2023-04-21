@@ -135,8 +135,8 @@ GameObject:
   - component: {fileID: 190121528}
   - component: {fileID: 190121530}
   m_Layer: 0
-  m_Name: Square
-  m_TagString: Untagged
+  m_Name: Ground
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -331,7 +331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 442408356756797273, guid: d36708c642354401cb017de29ef65da0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.011562347
+      value: -11.16
       objectReference: {fileID: 0}
     - target: {fileID: 442408356756797273, guid: d36708c642354401cb017de29ef65da0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -369,9 +369,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 442408356756797277, guid: d36708c642354401cb017de29ef65da0, type: 3}
+      propertyPath: swordTransform
+      value: 
+      objectReference: {fileID: 1780993132}
     - target: {fileID: 442408356756797278, guid: d36708c642354401cb017de29ef65da0, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d36708c642354401cb017de29ef65da0, type: 3}
+--- !u!4 &1780993132 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 442408355731760880, guid: d36708c642354401cb017de29ef65da0, type: 3}
+  m_PrefabInstance: {fileID: 1615757194}
+  m_PrefabAsset: {fileID: 0}
