@@ -46,6 +46,11 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRB.velocity = new Vector2(playerRB.velocity.x, playerRB.velocity.y * 0.5f);
         }
+
+        if(Input.GetMouseButtonDown(1))
+        {
+            StartCoroutine(Dash());
+        }
     }
 
    
@@ -85,4 +90,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    IEnumerator Dash()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        playerRB.velocity = new Vector2(0, 0);
+
+        for (int i = 0; i < 5; i++) 
+        {
+            transform.position = transform.position = Vector2.MoveTowards(transform.position, mousePosition, 0.5f);
+            yield return new WaitForSeconds(0.02f);
+        }
+
+        playerRB.velocity = new Vector2(0, 0);
+
+    }
+
+
+   
 }
