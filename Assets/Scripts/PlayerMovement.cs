@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public bool doubleJump;
     public bool wallJump;
     public bool wallJumpReset;
+    public float lastYPos;
     int lastWallID;
 
 
@@ -46,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRB.velocity = new Vector2(playerRB.velocity.x, playerRB.velocity.y * 0.5f);
         }
+
+
     }
 
    
@@ -57,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             doubleJump = true;
             wallJumpReset = true;
+
         }
 
         if (collision.gameObject.tag == "Wall")
