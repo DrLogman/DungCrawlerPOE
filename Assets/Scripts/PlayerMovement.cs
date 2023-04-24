@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Rigidbody2D playerRB;
     [SerializeField] float speed;
     [SerializeField] float jumpForce;
-    [SerializeField] LayerMask groundLayer;
     [SerializeField] SwordPointer swordPointer;
+    [SerializeField] LayerMask dashLayer;
     private bool isOnWall;
     public bool isGrounded;
     public bool doubleJump;
@@ -109,7 +109,8 @@ public class PlayerMovement : MonoBehaviour
 
             // Casts ray from player, goes in direction of mouse for distance 5, hits layermask 6 (dashCollide)
 
-            RaycastHit2D hit = Physics2D.Raycast(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right, Mathf.Infinity, 6);
+            RaycastHit2D hit = Physics2D.Raycast(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right, Mathf.Infinity, dashLayer);
+            Debug.Log(hit.collider);
             Debug.DrawRay(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right, Color.green, 0.5f);
             Ray airDashRay = new Ray(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right * 5);
 

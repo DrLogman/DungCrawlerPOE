@@ -575,10 +575,10 @@ MonoBehaviour:
   playerRB: {fileID: 1248407854}
   speed: 8
   jumpForce: 8
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
   swordPointer: {fileID: 472633646}
+  dashLayer:
+    serializedVersion: 2
+    m_Bits: 64
   isGrounded: 0
   doubleJump: 0
   wallJump: 0
