@@ -10,7 +10,6 @@ public class MoveCamera : MonoBehaviour
     [SerializeField] bool lookAtPlayer;
     [SerializeField] int lowerLimit = 0;
 
-
     void FixedUpdate()
     {
        
