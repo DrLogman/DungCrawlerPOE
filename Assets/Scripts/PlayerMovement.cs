@@ -10,59 +10,74 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] SwordPointer swordPointer;
     [SerializeField] LayerMask dashLayer;
     [SerializeField] float dashStat;
+    [SerializeField] float dashCooldown;
+    private bool canMove;
     private bool isOnWall;
-    public bool dashActive;
-    public bool isGrounded;
-    public bool doubleJump;
-    public bool wallJump;
-    public bool wallJumpReset;
-    public float lastYPos;
-    int lastWallID;
-    //set most of these to private when done testing, only set to public to see if they change correctly. as of right now all are tested thoroughly except for dash related variables
+    private bool dashActive; // add all private bools to one initialization line
+    private bool isGrounded;
+    private bool doubleJump;
+    private bool wallJump;
+    private bool wallJumpReset;
+    private float lastYPos;
+    private int lastWallID;
 
+    private void Start()
+    {
+        canMove = true;
+        dashActive = true;
+    }
     private void Update()
+    {
+        if(canMove == true)
+        {
+            PlayerMove();
+            Jump();
+            Dash();
+        }
+    }
+
+    private void PlayerMove()
     {
         float horizontalMovement = Input.GetAxisRaw("Horizontal"); //Add Move method and canMove variable, make it so you can't move for a bit after dashing
 
         playerRB.velocity = new Vector2(horizontalMovement * speed, playerRB.velocity.y);
-
-        Jump();
-        Dash();
     }
 
     private void Jump()
     {
-        /*
-         * Checks if player is grounded, if double jump is active, or if the player is on a wall and the wall jump reset is true
-         * If the player is not grounded, check for wall jump and then double jump and remove whichever is used
-         * Jumps used in order Ground -> Wall -> Double
-         */
-        if (Input.GetKeyDown(KeyCode.Space) && (isGrounded == true || doubleJump == true || (wallJump == true && wallJumpReset == true)))
-        {
-            playerRB.velocity = new Vector2(playerRB.velocity.x, jumpForce);
-
-            if (isGrounded == false)
+        
+            /*
+            * Checks if player is grounded, if double jump is active, or if the player is on a wall and the wall jump reset is true
+            * If the player is not grounded, check for wall jump and then double jump and remove whichever is used
+            * Jumps used in order Ground -> Wall -> Double
+            */
+            if (Input.GetKeyDown(KeyCode.Space) && (isGrounded == true || doubleJump == true || (wallJump == true && wallJumpReset == true)))
             {
-                if (wallJump == true && wallJumpReset == true)
-                {
-                    wallJump = false;
-                    wallJumpReset = false;
-                }
-                else
-                {
-                    doubleJump = false;
-                }
+                playerRB.velocity = new Vector2(playerRB.velocity.x, jumpForce);
 
+                if (isGrounded == false)
+                {
+                    if (wallJump == true && wallJumpReset == true)
+                    {
+                        wallJump = false;
+                        wallJumpReset = false;
+                    }
+                    else
+                    {
+                        doubleJump = false;
+                    }
+
+                }
             }
-        }
-        /*
-         * Checks is space is let go, if so slows down jump velocity to give affect of pressing space longer to jump longer
-         * Thanks Trey :^)
-         */
-        if (Input.GetKeyUp(KeyCode.Space) && playerRB.velocity.y > 0f)
-        {
-            playerRB.velocity = new Vector2(playerRB.velocity.x, playerRB.velocity.y * 0.5f);
-        }
+            /*
+             * Checks is space is let go, if so slows down jump velocity to give affect of pressing space longer to jump longer
+             * Thanks Trey :^)
+             */
+            if (Input.GetKeyUp(KeyCode.Space) && playerRB.velocity.y > 0f)
+            {
+                playerRB.velocity = new Vector2(playerRB.velocity.x, playerRB.velocity.y * 0.5f);
+            }
+        
     }
 
    
@@ -138,15 +153,26 @@ public class PlayerMovement : MonoBehaviour
 
             playerRB.velocity = new Vector2(0, 0);
 
+            StartCoroutine(FreezePlayer(0.1f));
+
             dashActive = false;
-            StartCoroutine(DashCooldown(2.0f));
+            StartCoroutine(DashCooldown());
         }
     }
 
-    IEnumerator DashCooldown(float cooldownSeconds)
+    IEnumerator DashCooldown()
     {
-        yield return new WaitForSeconds(cooldownSeconds);
+        yield return new WaitForSeconds(dashCooldown);
         dashActive = true;
+    }
+
+    IEnumerator FreezePlayer(float pauseTime)
+    {
+        canMove = false;
+        playerRB.gravityScale = 0;
+        yield return new WaitForSeconds(pauseTime);
+        canMove = true;
+        playerRB.gravityScale = 1;
     }
 
 }
