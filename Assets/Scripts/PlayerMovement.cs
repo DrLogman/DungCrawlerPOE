@@ -9,18 +9,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] SwordPointer swordPointer;
     [SerializeField] LayerMask dashLayer;
+    [SerializeField] float dashStat;
     private bool isOnWall;
+    public bool dashActive;
     public bool isGrounded;
     public bool doubleJump;
     public bool wallJump;
     public bool wallJumpReset;
     public float lastYPos;
     int lastWallID;
-
+    //set most of these to private when done testing, only set to public to see if they change correctly. as of right now all are tested thoroughly except for dash related variables
 
     private void Update()
     {
-        float horizontalMovement = Input.GetAxisRaw("Horizontal");
+        float horizontalMovement = Input.GetAxisRaw("Horizontal"); //Add Move method and canMove variable, make it so you can't move for a bit after dashing
 
         playerRB.velocity = new Vector2(horizontalMovement * speed, playerRB.velocity.y);
 
@@ -103,16 +105,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash()
     {
-        if(Input.GetMouseButtonDown(1))
+        if(Input.GetMouseButtonDown(1) && dashActive == true)
         {
             playerRB.velocity = new Vector2(0, 0);
 
             // Casts ray from player, goes in direction of mouse for distance 5, hits layermask 6 (dashCollide)
 
-            RaycastHit2D hit = Physics2D.Raycast(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right, Mathf.Infinity, dashLayer);
+            RaycastHit2D hit = Physics2D.Raycast(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right, dashStat, dashLayer);
             Debug.Log(hit.collider);
             Debug.DrawRay(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right, Color.green, 0.5f);
-            Ray airDashRay = new Ray(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right * 5);
+            Ray airDashRay = new Ray(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right * dashStat);
 
 
             Vector2 point;
@@ -124,18 +126,27 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("Hitting: " + hit.collider.tag);
             } else
             {
-                point = airDashRay.GetPoint(5);
+                point = airDashRay.GetPoint(dashStat);
             }
 
-            float dashDistance = Mathf.Sqrt(Mathf.Pow(playerRB.transform.position.x - point.x, 2) + Mathf.Pow(playerRB.transform.position.y - point.y, 2));
+            float dashDistance = Mathf.Sqrt(Mathf.Pow((playerRB.transform.position.x - point.x), 2) + Mathf.Pow((playerRB.transform.position.y - point.y), 2));
             Debug.Log("Dash Distance: " + dashDistance);
 
-            Debug.DrawRay(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right * dashDistance, Color.green, 0.5f);
+            Debug.DrawRay(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right * dashStat, Color.green, 0.5f);
 
-            transform.position = Vector2.MoveTowards(playerRB.transform.position, point, 5);
+            transform.position = Vector2.MoveTowards(playerRB.transform.position, point, dashDistance);
 
             playerRB.velocity = new Vector2(0, 0);
+
+            dashActive = false;
+            StartCoroutine(DashCooldown(2.0f));
         }
+    }
+
+    IEnumerator DashCooldown(float cooldownSeconds)
+    {
+        yield return new WaitForSeconds(cooldownSeconds);
+        dashActive = true;
     }
 
 }
