@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask dashLayer;
     [SerializeField] float dashStat;
     [SerializeField] float dashCooldown;
+    [SerializeField] Transform groundCheck, leftCollider, rightCollider;
     private bool canMove;
     private bool isOnWall;
     private bool dashActive; // add all private bools to one initialization line
@@ -19,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private bool wallJump;
     private bool wallJumpReset;
     private float lastYPos;
-    private int lastWallID;
+    private string lastWallSide;
 
     private void Start()
     {
@@ -34,6 +35,13 @@ public class PlayerMovement : MonoBehaviour
             Jump();
             Dash();
         }
+
+        
+    }
+
+    private void FixedUpdate()
+    {
+        PlayerCollision();
     }
 
     private void PlayerMove()
@@ -80,43 +88,55 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-   
 
-    private void OnCollisionEnter2D(Collision2D collision)
+   private void PlayerCollision()
     {
-        if(collision.gameObject.tag == "Ground")
+        if (Physics2D.OverlapCircle(groundCheck.position, 0.15f, dashLayer))
         {
             isGrounded = true;
             doubleJump = true;
             wallJumpReset = true;
-
-        }
-
-        if (collision.gameObject.tag == "Wall")
-        {
-            wallJump = true;
-
-            if(lastWallID != collision.collider.GetInstanceID())
-            {
-                wallJumpReset = true;
-            }
-
-            lastWallID = collision.collider.GetInstanceID();
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
+        } else
         {
             isGrounded = false;
         }
 
-        if (collision.gameObject.tag == "Wall")
+        Collider2D leftWall = Physics2D.OverlapCircle(leftCollider.position, 0.2f, dashLayer);
+        Collider2D rightWall = Physics2D.OverlapCircle(rightCollider.position, 0.2f, dashLayer);
+
+        if (leftWall != null)
+        {
+            wallJump = true;
+
+            if (lastWallSide != "left")
+            {
+                wallJumpReset = true;
+            }
+
+            lastWallSide = "left";
+        }
+        else if(rightWall != null)
+        {
+            wallJump = true;
+
+            if (lastWallSide != "right")
+            {
+                wallJumpReset = true;
+            }
+
+            lastWallSide = "right";
+        }
+        else
         {
             wallJump = false;
         }
+
+
+
+        Debug.Log(lastWallSide);
     }
+
+    
 
     private void Dash()
     {
