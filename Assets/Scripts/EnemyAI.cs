@@ -5,11 +5,9 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     public Transform player;
-    private float lineOfSight;
-    [SerializeField] float idleLineOfSight, chaseLineOfSight;
-    [SerializeField] Rigidbody2D rb2d;
-    [SerializeField] float speed;
-
+    public float idleLineOfSight, chaseLineOfSight, distanceToPlayer, lineOfSight;
+    public Rigidbody2D rb2d;
+    public LayerMask collideLayer;
 
 
     void Start()
@@ -17,39 +15,26 @@ public class EnemyAI : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
     }
 
+    public bool DetectPlayer()
+    {
+        if(distanceToPlayer < lineOfSight)
+        {
+            Vector2 directionToPlayer = new Vector2((player.transform.position.x - transform.position.x), (player.transform.position.y - transform.position.y));
+            RaycastHit2D playerHit = Physics2D.Raycast(transform.position, directionToPlayer, distanceToPlayer, collideLayer);
+
+            if(playerHit.collider == null)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     
     void Update()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-
-        if (distanceToPlayer < lineOfSight)
-        {
-            ChasePlayer();
-        }
-        else
-        {
-            StopChasingPlayer();
-        }
+        distanceToPlayer = Vector2.Distance(transform.position, player.position);
     }
-    void ChasePlayer()
-    {
-        lineOfSight = chaseLineOfSight;
 
-        if (transform.position.x < player.position.x)
-        {
-            rb2d.velocity = new Vector2(speed, 0);
-
-        }
-        else
-        {
-            rb2d.velocity = new Vector2(-speed, 0);
-        }
-    }
-    void StopChasingPlayer()
-    {
-        lineOfSight = idleLineOfSight;
-
-        rb2d.velocity = new Vector2(0, 0);
-
-    }
 }
