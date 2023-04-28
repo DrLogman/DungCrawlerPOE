@@ -37,19 +37,19 @@ public class EnemyAI : MonoBehaviour
 
         if (transform.position.x < player.position.x)
         {
-            rb2d.velocity = new Vector2(speed, 0);
+            rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
 
         }
         else
         {
-            rb2d.velocity = new Vector2(-speed, 0);
+            rb2d.velocity = new Vector2(-speed, rb2d.velocity.y);
         }
     }
     void StopChasingPlayer()
     {
         lineOfSight = idleLineOfSight;
 
-        rb2d.velocity = new Vector2(0, 0);
+        rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 
     }
 }

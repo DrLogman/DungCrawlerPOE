@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public Transform player;
-    public Vector3 offset;
+    [SerializeField] Transform player;
+    [SerializeField] Vector3 offset;
     [Range(1,10)]
     public float smoothnessFactor;
     public Vector3 minValues, maxValues;
