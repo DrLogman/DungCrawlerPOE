@@ -4,26 +4,22 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D playerRB;
-    [SerializeField] float speed;
-    [SerializeField] float jumpForce;
+    [SerializeField] float speed, jumpForce, maxHP, health;
+    [SerializeField] float dashStat, dashCooldown;
     [SerializeField] SwordPointer swordPointer;
     [SerializeField] LayerMask dashLayer;
-    [SerializeField] float dashStat;
-    [SerializeField] float dashCooldown;
     [SerializeField] Transform groundCheck, leftCollider, rightCollider;
-    private bool canMove;
-    private bool isOnWall;
-    private bool dashActive; // add all private bools to one initialization line
-    private bool isGrounded;
-    private bool doubleJump;
-    private bool wallJump;
-    private bool wallJumpReset;
+    Rigidbody2D playerRB;
+    private bool canMove, isOnWall, dashActive, isGrounded, doubleJump, wallJump, wallJumpReset;
     private float lastYPos;
-    private string lastWallSide;
+    private string lastWallSide, playerDirection;
 
     private void Start()
     {
+        playerDirection = "left";
+        maxHP = 100;
+        health = maxHP;
+        playerRB = GetComponent<Rigidbody2D>();
         canMove = true;
         dashActive = true;
     }
@@ -37,7 +33,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         
+
+        
     }
+
+    private void CheckPlayerDirection()
+    {
+        //Add code for turning and all that
+    }
+
 
     private void FixedUpdate()
     {
@@ -47,8 +51,10 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerMove()
     {
         float horizontalMovement = Input.GetAxisRaw("Horizontal"); //Add Move method and canMove variable, make it so you can't move for a bit after dashing
-
+        
+        
         playerRB.velocity = new Vector2(horizontalMovement * speed, playerRB.velocity.y);
+        
     }
 
     private void Jump()
@@ -135,7 +141,43 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    
+    public void TakeDamage(Transform attackTransform, float damageTaken) //Used for melee attacks or certain projectiles, called in enemy script
+    {
+        Vector2 damageForce;
+        health -= damageTaken;
+        //Add invulnerability coroutine here
+        if(health > 0)
+        {
+            if (attackTransform.position.x > transform.position.x)
+            {
+                playerDirection = "right";
+                damageForce = new Vector2(-4, 3);
+            }
+            else
+            {
+                playerDirection = "left";
+                damageForce = new Vector2(4, 3);
+            }
+
+            StartCoroutine(PlayerKnockback(damageForce, 5));
+
+        }        
+    }
+
+    IEnumerator PlayerKnockback(Vector2 velocity, int kbScale)
+    {
+        canMove = false;
+        playerRB.velocity = new Vector2(0, 0);
+
+        for (int i = 0; i < kbScale; i++)
+        {
+            playerRB.velocity = velocity;
+            yield return 0;
+        }
+
+        yield return new WaitForSeconds(0.4f);
+        canMove = true;
+    }
 
     private void Dash()
     {
