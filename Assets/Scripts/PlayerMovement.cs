@@ -139,7 +139,6 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        Debug.Log(lastWallSide);
     }
 
     public void TakeDamage(Transform attackTransform, float damageTaken) //Used for melee attacks or certain projectiles, called in enemy script
@@ -189,7 +188,7 @@ public class PlayerMovement : MonoBehaviour
             // Casts ray from player, goes in direction of mouse for distance 5, hits layermask 6 (dashCollide)
 
             RaycastHit2D hit = Physics2D.Raycast(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right, dashStat, dashLayer);
-            Debug.Log(hit.collider);
+            
             Debug.DrawRay(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right, Color.green, 0.5f);
             Ray airDashRay = new Ray(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right * dashStat);
 
@@ -200,14 +199,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 point = hit.point;
                 //Hit something, print the tag of the object
-                Debug.Log("Hitting: " + hit.collider.tag);
+                
             } else
             {
                 point = airDashRay.GetPoint(dashStat);
             }
 
             float dashDistance = Mathf.Sqrt(Mathf.Pow((playerRB.transform.position.x - point.x), 2) + Mathf.Pow((playerRB.transform.position.y - point.y), 2));
-            Debug.Log("Dash Distance: " + dashDistance);
+            
 
             Debug.DrawRay(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right * dashStat, Color.green, 0.5f);
 
