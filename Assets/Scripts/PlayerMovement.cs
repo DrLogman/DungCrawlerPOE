@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speed, jumpForce, maxHP, health;
     [SerializeField] float dashStat, dashCooldown;
     [SerializeField] SwordPointer swordPointer;
-    [SerializeField] LayerMask dashLayer;
+    [SerializeField] LayerMask dashLayer, enemyLayer;
     [SerializeField] Transform groundCheck, leftCollider, rightCollider;
     Rigidbody2D playerRB;
     private bool canMove, isOnWall, dashActive, isGrounded, doubleJump, wallJump, wallJumpReset;
@@ -34,7 +34,10 @@ public class PlayerMovement : MonoBehaviour
             Dash();
         }
         
-        
+        if(Input.GetMouseButtonDown(0))
+        {
+            SwordAttack();
+        }
     }
 
     private void CheckPlayerDirection()
@@ -153,12 +156,12 @@ public class PlayerMovement : MonoBehaviour
                 if (attackTransform.position.x > transform.position.x)
                 {
                     playerDirection = "right";
-                    damageForce = new Vector2(-4, 3);
+                    damageForce = new Vector2(-6, 5);
                 }
                 else
                 {
                     playerDirection = "left";
-                    damageForce = new Vector2(4, 3);
+                    damageForce = new Vector2(6, 5);
                 }
 
                 StartCoroutine(PlayerKnockback(damageForce, 5));
@@ -241,11 +244,20 @@ public class PlayerMovement : MonoBehaviour
     }
 
     IEnumerator PlayerInvulnerable(float seconds)
-        {
-            invulnerable = true;
-            Debug.Log("INV");
-            yield return new WaitForSeconds(seconds);
-            invulnerable = false;
-        }
+    {
+        invulnerable = true;
+        Debug.Log("INV");
+        yield return new WaitForSeconds(seconds);
+        invulnerable = false;
+    }
 
+    void SwordAttack()
+    {
+        RaycastHit2D swordRay = Physics2D.Raycast(transform.position, swordPointer.transform.rotation * Vector2.right, 5 /* sword length */, enemyLayer);
+
+        if(swordRay.collider.gameObject.GetComponent<MovingEnemy>() != null)
+        {
+            swordRay.collider.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5);
+        }
+    }
 }

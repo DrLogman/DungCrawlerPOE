@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 472633645}
   - component: {fileID: 472633647}
   - component: {fileID: 472633646}
+  - component: {fileID: 472633648}
   m_Layer: 0
   m_Name: SwordPointer
   m_TagString: Untagged
@@ -314,6 +315,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &472633648
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472633644}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.5413657, y: 0.033752345}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.2, y: 4.32}
+    newSize: {x: 5.2, y: 4.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.1172683, y: 0.42720753}
+  m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1950,16 +1977,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -3, y: -3, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 5
-      m_TileSpriteIndex: 5
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 9, y: -3, z: 0}
     second:
       serializedVersion: 2
@@ -2020,16 +2037,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -3, y: -2, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 5
-      m_TileSpriteIndex: 5
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: -15, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -2050,16 +2057,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -3, y: -1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 5
-      m_TileSpriteIndex: 5
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: -15, y: 0, z: 0}
     second:
       serializedVersion: 2
@@ -2071,16 +2068,6 @@ Tilemap:
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
   - first: {x: -12, y: 0, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 5
-      m_TileSpriteIndex: 5
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -3, y: 0, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 5
@@ -2222,7 +2209,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: e55e977fb4422124d9cb8cd16942d1be, type: 2}
   - m_RefCount: 9
     m_Data: {fileID: 11400000, guid: 1b7e1a7f751f43e4c834781359beadf6, type: 2}
-  - m_RefCount: 95
+  - m_RefCount: 91
     m_Data: {fileID: 11400000, guid: 298de8de22337e54ea868c4f08762884, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: efcc69698f707ab41bbafba20c72af19, type: 2}
@@ -2241,7 +2228,7 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: f80df0c603831f644ae5da6bb3c7bee1, type: 3}
   - m_RefCount: 9
     m_Data: {fileID: 21300000, guid: 8ac78c4bbcb760c469d15edb52deb2dc, type: 3}
-  - m_RefCount: 95
+  - m_RefCount: 91
     m_Data: {fileID: 21300000, guid: 3d0be0dc55c4f6a4ab88d6a14498e0d9, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: 267c1a8ba2c9e254b966dcabec47bfc3, type: 3}
@@ -2250,7 +2237,7 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: 2083274e292b30a4fa4cc17768f892ee, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 170
+  - m_RefCount: 166
     m_Data:
       e00: 1
       e01: 0
@@ -2269,7 +2256,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 170
+  - m_RefCount: 166
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -2372,13 +2359,13 @@ CompositeCollider2D:
       - X: -19999900
         Y: -30000000
       - X: -19999900
-        Y: 10000041
+        Y: -30000041
       - X: -19999959
-        Y: 10000100
+        Y: -30000100
       - X: -30000041
-        Y: 10000100
+        Y: -30000100
       - X: -30000100
-        Y: 10000041
+        Y: -30000041
       - X: -30000100
         Y: -30000000
       - X: -80000000
@@ -2423,10 +2410,6 @@ CompositeCollider2D:
       - {x: 8.99997, y: -6}
       - {x: 5, y: -5.9999704}
       - {x: 4.999971, y: -3}
-      - {x: -1.99999, y: -2.9999707}
-      - {x: -2.0000253, y: 1.00001}
-      - {x: -3.00001, y: 0.9999748}
-      - {x: -3.0000393, y: -3}
       - {x: -8, y: -3.0000293}
       - {x: -7.9999704, y: -8}
     - - {x: 24.999975, y: -8.00001}
@@ -2633,7 +2616,12 @@ MonoBehaviour:
   enemySize: 0.12
   fallCollider: {fileID: 464815309}
   touchCollider: {fileID: 1201430786}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  playerMovement: {fileID: 1248407853}
   speed: 3
+  health: 50
 --- !u!1 &1201430785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2680,7 +2668,7 @@ GameObject:
   - component: {fileID: 1248407853}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2697,18 +2685,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66a8d5ae529ba8a49868409470b6339e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRB: {fileID: 1248407854}
   speed: 8
   jumpForce: 8
+  maxHP: 0
+  health: 0
+  dashStat: 5
+  dashCooldown: 1
   swordPointer: {fileID: 472633646}
   dashLayer:
     serializedVersion: 2
     m_Bits: 64
-  dashStat: 5
-  dashCooldown: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
   groundCheck: {fileID: 107411564}
   leftCollider: {fileID: 2064413360}
   rightCollider: {fileID: 427751847}
+  invulnerable: 0
 --- !u!50 &1248407854
 Rigidbody2D:
   serializedVersion: 4

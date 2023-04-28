@@ -9,7 +9,7 @@ public class MovingEnemy : EnemyAI
     [SerializeField] LayerMask playerLayer;
     [SerializeField] PlayerMovement playerMovement;
     SpriteRenderer spriteRenderer;
-    public float speed;
+    public float speed, health;
     string facingDirection;
     bool idle;
 
@@ -168,6 +168,32 @@ public class MovingEnemy : EnemyAI
                 playerMovement.TakeDamage(transform, 10);
             }
         }
+    }
+
+    public IEnumerator TakeDamage(Transform playerTransform, float damage)
+    {
+        health -= damage;
+
+        if (health > 0)
+        {
+            if (playerTransform.position.x > transform.position.x)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    rb2d.velocity = new Vector2(6, 5);
+                    yield return 0;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    rb2d.velocity = new Vector2(6, 5);
+                    yield return 0;
+                }
+            }
+        }
+
     }
 
 }
