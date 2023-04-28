@@ -13,10 +13,12 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove, isOnWall, dashActive, isGrounded, doubleJump, wallJump, wallJumpReset;
     private float lastYPos;
     private string lastWallSide, playerDirection;
+    public bool invulnerable;
 
     private void Start()
     {
         playerDirection = "left";
+        invulnerable = false;
         maxHP = 100;
         health = maxHP;
         playerRB = GetComponent<Rigidbody2D>();
@@ -25,15 +27,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        if(canMove == true)
+        if (canMove == true)
         {
             PlayerMove();
             Jump();
             Dash();
         }
-
         
-
         
     }
 
@@ -143,25 +143,29 @@ public class PlayerMovement : MonoBehaviour
 
     public void TakeDamage(Transform attackTransform, float damageTaken) //Used for melee attacks or certain projectiles, called in enemy script
     {
-        Vector2 damageForce;
-        health -= damageTaken;
-        //Add invulnerability coroutine here
-        if(health > 0)
+        if(invulnerable == false)
         {
-            if (attackTransform.position.x > transform.position.x)
+            Vector2 damageForce;
+            health -= damageTaken;
+            StartCoroutine(PlayerInvulnerable(2.0f));
+            if (health > 0)
             {
-                playerDirection = "right";
-                damageForce = new Vector2(-4, 3);
-            }
-            else
-            {
-                playerDirection = "left";
-                damageForce = new Vector2(4, 3);
-            }
+                if (attackTransform.position.x > transform.position.x)
+                {
+                    playerDirection = "right";
+                    damageForce = new Vector2(-4, 3);
+                }
+                else
+                {
+                    playerDirection = "left";
+                    damageForce = new Vector2(4, 3);
+                }
 
-            StartCoroutine(PlayerKnockback(damageForce, 5));
+                StartCoroutine(PlayerKnockback(damageForce, 5));
+                
 
-        }        
+            }
+        }   
     }
 
     IEnumerator PlayerKnockback(Vector2 velocity, int kbScale)
@@ -235,5 +239,13 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         playerRB.gravityScale = 1;
     }
+
+    IEnumerator PlayerInvulnerable(float seconds)
+        {
+            invulnerable = true;
+            Debug.Log("INV");
+            yield return new WaitForSeconds(seconds);
+            invulnerable = false;
+        }
 
 }

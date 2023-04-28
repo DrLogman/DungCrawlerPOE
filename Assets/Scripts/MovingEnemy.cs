@@ -6,6 +6,8 @@ public class MovingEnemy : EnemyAI
 {
     [SerializeField] float chaseMinDistance, enemySize;
     [SerializeField] Transform fallCollider, touchCollider;
+    [SerializeField] LayerMask playerLayer;
+    [SerializeField] PlayerMovement playerMovement;
     SpriteRenderer spriteRenderer;
     public float speed;
     string facingDirection;
@@ -30,6 +32,7 @@ public class MovingEnemy : EnemyAI
             Debug.Log("Patrolling");
             Patrol();
         }
+        DamagePlayer();
     }
 
     void ChasePlayer()
@@ -154,5 +157,17 @@ public class MovingEnemy : EnemyAI
         }
     }
 
-    
+    void DamagePlayer()
+    {
+        if (distanceToPlayer < 1 && playerMovement.invulnerable == false)
+        {
+            Collider2D touchCollision = Physics2D.OverlapCircle(touchCollider.position, 0.2f, playerLayer);
+
+            if(touchCollision.tag == "Player")
+            {
+                playerMovement.TakeDamage(transform, 10);
+            }
+        }
+    }
+
 }

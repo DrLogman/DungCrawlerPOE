@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
     public float idleLineOfSight, chaseLineOfSight, distanceToPlayer, lineOfSight;
     public Rigidbody2D rb2d;
     public LayerMask collideLayer;
+    
 
 
     void Start()
@@ -32,6 +33,8 @@ public class EnemyAI : MonoBehaviour
     }
 
     
+
+
     void Update()
     {
         distanceToPlayer = Vector2.Distance(transform.position, player.position);
