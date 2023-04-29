@@ -12,14 +12,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheck, leftCollider, rightCollider;
     public Image healthBarImage;
     Rigidbody2D playerRB;
-    private bool canMove, isOnWall, dashActive, isGrounded, doubleJump, wallJump, wallJumpReset;
+    private bool canMove, isOnWall, isGrounded, doubleJump, wallJump, wallJumpReset;
     private float lastYPos;
     private string lastWallSide, playerDirection;
-    public bool invulnerable;
-    IEnumerator dashCoroutine;
+    public bool invulnerable, dashActive, stopDashCooldown;
+    public Coroutine dashCoroutine = null;
 
     private void Start()
     {
+        stopDashCooldown = false;
         playerDirection = "left";
         invulnerable = false;
         maxHP = 100;
@@ -43,6 +44,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         UpdateHealthBar();
+        if(dashCoroutine != null && stopDashCooldown == true)
+        {
+            StopCoroutine(dashCoroutine);
+            stopDashCooldown = false;
+        }
+
     }
 
     public void UpdateHealthBar()
@@ -200,6 +207,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(1) && dashActive == true)
         {
+            dashActive = false;
+
             playerRB.velocity = new Vector2(0, 0);
 
             // Casts ray from player, goes in direction of mouse for distance 5, hits layermask 6 (dashCollide)
@@ -228,7 +237,10 @@ public class PlayerMovement : MonoBehaviour
             
             foreach(RaycastHit2D enemy in enemiesHit)
             {
-                enemy.collider.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5, 6, 2);
+                if(enemy.collider != null)
+                {
+                    enemy.collider.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5, 6, 2);
+                }
             }
 
             Debug.DrawRay(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right * dashStat, Color.green, 0.5f);
@@ -239,16 +251,18 @@ public class PlayerMovement : MonoBehaviour
 
             StartCoroutine(FreezePlayer(0.1f));
 
-            dashCoroutine = DashCooldown();
-            dashActive = false;
-            StartCoroutine(dashCoroutine);
+            dashCoroutine = StartCoroutine(DashCooldown());
+            
+
+
             StartCoroutine(PlayerInvulnerable(1));
         }
     }
 
-    IEnumerator DashCooldown()
+    public IEnumerator DashCooldown()
     {
         yield return new WaitForSeconds(dashCooldown);
+        Debug.Log("Dash Cooldown Finished :(");
         dashActive = true;
     }
 
@@ -270,8 +284,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void ResetDash() //dont work :(
     {
-        StopCoroutine(dashCoroutine);
-        
+        stopDashCooldown = true;
+        Debug.Log("REeseyt");
         dashActive = true;
     }
 
@@ -279,11 +293,15 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit2D swordRay = Physics2D.Raycast(transform.position, swordPointer.transform.rotation * Vector2.right, 1.5f /* sword length */, enemyLayer);
 
-        if(swordRay.collider.gameObject.GetComponent<MovingEnemy>() != null)
+        if(swordRay.collider != null)
         {
-            swordRay.collider.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5, 4, 1.5f);
+            if (swordRay.collider.gameObject.GetComponent<MovingEnemy>() != null)
+            {
+                swordRay.collider.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5, 4, 1.5f);
 
+            }
         }
+        
     }
 
 }

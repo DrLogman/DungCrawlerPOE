@@ -15,7 +15,7 @@ public class FallingPlatform : MonoBehaviour
         {
             StartCoroutine(Fall());
         }
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy")) // make check for layer instead of tag on gameobject
         {
             StartCoroutine(Fall());
         }

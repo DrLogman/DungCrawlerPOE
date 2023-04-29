@@ -169,7 +169,7 @@ public class MovingEnemy : EnemyAI
         {
             Collider2D touchCollision = Physics2D.OverlapBox(touchCollider.position, new Vector2(0.5f, 1), 0, playerLayer);
 
-            if(touchCollision.tag == "Player")
+            if(touchCollision != null && touchCollision.tag == "Player")
             {
                 playerMovement.TakeDamage(transform, 10);
             }
@@ -200,9 +200,13 @@ public class MovingEnemy : EnemyAI
 
             StartCoroutine(EnemyKnockback(damageForce, 5));
         }
-        else
+        else if (health <= 0)
         {
-            playerMovement.ResetDash();
+            if(playerMovement.dashActive == false)
+            {
+                playerMovement.ResetDash();
+            }
+
             Destroy(gameObject);
         }
 
