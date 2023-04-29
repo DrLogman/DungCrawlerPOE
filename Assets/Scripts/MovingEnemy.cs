@@ -1,24 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovingEnemy : EnemyAI
 {
-    [SerializeField] float chaseMinDistance, enemySize;
+    [SerializeField] float chaseMinDistance;
     [SerializeField] Transform fallCollider, touchCollider;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] PlayerMovement playerMovement;
-    SpriteRenderer spriteRenderer;
     public float speed, health;
     string facingDirection;
-    bool idle;
+    bool idle, canMove;
+    Vector3 enemySize;
+    SpriteRenderer spriteRenderer;
 
 
     private void Start()
     {
         facingDirection = "left";
+        canMove = true;
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        enemySize = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
     void Update()
@@ -29,43 +33,49 @@ public class MovingEnemy : EnemyAI
         CheckDirection();
         if (idle == true)
         {
-            Debug.Log("Patrolling");
             Patrol();
         }
         DamagePlayer();
     }
 
+
+    
+
+
     void ChasePlayer()
     {
-        lineOfSight = chaseLineOfSight;
-        if(distanceToPlayer > chaseMinDistance)
+        if(canMove == true)
         {
-            if (transform.position.x < player.position.x)
+            lineOfSight = chaseLineOfSight;
+            if (distanceToPlayer > chaseMinDistance)
             {
-                rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
-                facingDirection = "right";
+                if (transform.position.x < player.position.x)
+                {
+                    rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
+                    facingDirection = "right";
+                }
+                else
+                {
+                    rb2d.velocity = new Vector2(-speed, rb2d.velocity.y);
+                    facingDirection = "left";
+                }
             }
             else
             {
-                rb2d.velocity = new Vector2(-speed, rb2d.velocity.y);
-                facingDirection = "left";
+                rb2d.velocity = new Vector2(0, rb2d.velocity.y);
             }
-        } else
-        {
-            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
         }
-        
     }
 
     void CheckDirection()
     {
         if(facingDirection == "right")
         {
-            transform.localScale = new Vector3(enemySize, enemySize, enemySize);
+            transform.localScale = new Vector3(enemySize.x, enemySize.y, enemySize.z);
         }
         if(facingDirection == "left")
         {
-            transform.localScale = new Vector3(-enemySize, enemySize, enemySize);
+            transform.localScale = new Vector3(-enemySize.x, enemySize.y, enemySize.z);
         }
     }
     void StopChasingPlayer()
@@ -102,7 +112,6 @@ public class MovingEnemy : EnemyAI
         Collider2D fallCollision = Physics2D.OverlapCircle(fallCollider.position, 0.1f, collideLayer);
         if(fallCollision == null)
         {
-            Debug.Log("FLIP! " + facingDirection);
             FlipDirection();
         } else
         {
@@ -126,18 +135,15 @@ public class MovingEnemy : EnemyAI
 
     void FlipDirection()
     {
-        Debug.Log("FLIPPED!");
+
         if (facingDirection == "left")
         {
-            Debug.Log("RIGHT");
+
             facingDirection = "right";
-            transform.localScale = new Vector3(enemySize, enemySize, enemySize);
         }
         else if (facingDirection == "right")
         {
-            Debug.Log("LEFT");
             facingDirection = "left";
-            transform.localScale = new Vector3(-enemySize, enemySize, enemySize);
         }
     }
 
@@ -161,7 +167,7 @@ public class MovingEnemy : EnemyAI
     {
         if (distanceToPlayer < 1 && playerMovement.invulnerable == false)
         {
-            Collider2D touchCollision = Physics2D.OverlapCircle(touchCollider.position, 0.2f, playerLayer);
+            Collider2D touchCollision = Physics2D.OverlapBox(touchCollider.position, new Vector2(0.5f, 1), 0, playerLayer);
 
             if(touchCollision.tag == "Player")
             {
@@ -170,30 +176,49 @@ public class MovingEnemy : EnemyAI
         }
     }
 
-    public IEnumerator TakeDamage(Transform playerTransform, float damage)
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawCube(touchCollider.position, new Vector3(0.5f, 1, 0));
+    }
+
+    public void TakeDamage(Transform playerTransform, float damage, float horizontalKB, float verticalKB)
     {
         health -= damage;
 
         if (health > 0)
         {
+            Vector3 damageForce;
+
             if (playerTransform.position.x > transform.position.x)
             {
-                for (int i = 0; i < 10; i++)
-                {
-                    rb2d.velocity = new Vector2(6, 5);
-                    yield return 0;
-                }
+                damageForce = new Vector2(-horizontalKB, verticalKB);
             }
             else
             {
-                for (int i = 0; i < 10; i++)
-                {
-                    rb2d.velocity = new Vector2(6, 5);
-                    yield return 0;
-                }
+                damageForce = new Vector2(horizontalKB, verticalKB);
             }
+
+            StartCoroutine(EnemyKnockback(damageForce, 5));
+        }
+        else
+        {
+            playerMovement.ResetDash();
+            Destroy(gameObject);
         }
 
+    }
+
+    IEnumerator EnemyKnockback(Vector2 velocity, int kbScale)
+    {
+        canMove = false;
+        rb2d.velocity = new Vector2(0, 0);
+        for (int i = 0; i < kbScale; i++)
+        {
+            rb2d.velocity = velocity;
+            yield return 0;
+        }
+        yield return new WaitForSeconds(0.3f);
+        canMove = true;
     }
 
 }
