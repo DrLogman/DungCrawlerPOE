@@ -47,7 +47,7 @@ public class MovingEnemy : EnemyAI
         if(canMove == true)
         {
             lineOfSight = chaseLineOfSight;
-            if (distanceToPlayer > chaseMinDistance)
+            if ((Mathf.Abs(transform.position.x - player.position.x)) > chaseMinDistance)
             {
                 if (transform.position.x < player.position.x)
                 {

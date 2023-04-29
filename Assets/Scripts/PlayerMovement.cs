@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
 
    private void PlayerCollision()
     {
-        if (Physics2D.OverlapCircle(groundCheck.position, 0.15f, dashLayer))
+        if (Physics2D.OverlapCircle(groundCheck.position, 0.15f, dashLayer) && canMove)
         {
             isGrounded = true;
             doubleJump = true;
