@@ -5,11 +5,11 @@ using UnityEngine;
 public class SwordPointer : MonoBehaviour
 {
     public float angle;
-
+    public Vector3 mousePos;
     // Update is called once per frame
     void Update ()
     {
-        Vector3 mousePos = Input.mousePosition;
+        mousePos = Input.mousePosition;
         mousePos.z = 5.23f;
 
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);

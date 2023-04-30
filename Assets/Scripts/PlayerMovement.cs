@@ -6,20 +6,22 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed, jumpForce, maxHP, health;
-    [SerializeField] float dashStat, dashCooldown;
+    [SerializeField] float dashStat, dashCooldown, sliceCooldown;
     [SerializeField] SwordPointer swordPointer;
     [SerializeField] LayerMask dashLayer, enemyLayer;
-    [SerializeField] Transform groundCheck, leftCollider, rightCollider;
+    [SerializeField] Transform groundCheck, leftCollider, rightCollider, sliceTransform;
     public Image healthBarImage;
     Rigidbody2D playerRB;
-    private bool canMove, isOnWall, isGrounded, doubleJump, wallJump, wallJumpReset;
+    private bool canMove, isOnWall, isGrounded, doubleJump, wallJump, wallJumpReset, canSlice;
     private float lastYPos;
     private string lastWallSide, playerDirection;
     public bool invulnerable, dashActive, stopDashCooldown;
     public Coroutine dashCoroutine = null;
+    [SerializeField] Animator sliceAnimator;
 
     private void Start()
     {
+        canSlice = true;
         stopDashCooldown = false;
         playerDirection = "left";
         invulnerable = false;
@@ -262,8 +264,13 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator DashCooldown()
     {
         yield return new WaitForSeconds(dashCooldown);
-        Debug.Log("Dash Cooldown Finished :(");
         dashActive = true;
+    }
+
+    public IEnumerator SliceCooldown()
+    {
+        yield return new WaitForSeconds(sliceCooldown);
+        canSlice = true;
     }
 
     IEnumerator FreezePlayer(float pauseTime)
@@ -291,17 +298,35 @@ public class PlayerMovement : MonoBehaviour
 
     void SwordAttack()
     {
-        RaycastHit2D swordRay = Physics2D.Raycast(transform.position, swordPointer.transform.rotation * Vector2.right, 1.5f /* sword length */, enemyLayer);
-
-        if(swordRay.collider != null)
+        if(canSlice == true)
         {
-            if (swordRay.collider.gameObject.GetComponent<MovingEnemy>() != null)
+            RaycastHit2D swordRay = Physics2D.Raycast(transform.position, swordPointer.transform.rotation * Vector2.right, 1.75f /* sword length */, enemyLayer);
+            if (swordPointer.mousePos.x - transform.position.x >= 0)
             {
-                swordRay.collider.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5, 4, 1.5f);
-
+                sliceTransform.localScale = new Vector3(8.9f, 8.9f, 8.9f);
             }
+            else
+            {
+                sliceTransform.localScale = new Vector3(8.9f, -8.9f, 8.9f);
+            }
+
+            sliceAnimator.SetTrigger("Slice");
+            //make slice flip if on left side and make it stay where you start it. also make it faster.
+
+            if (swordRay.collider != null)
+            {
+                if (swordRay.collider.gameObject.GetComponent<MovingEnemy>() != null)
+                {
+                    swordRay.collider.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5, 4, 1.5f);
+
+                }
+            }
+
+            canSlice = false;
+            StartCoroutine(SliceCooldown());
+
         }
-        
     }
+        
 
 }
