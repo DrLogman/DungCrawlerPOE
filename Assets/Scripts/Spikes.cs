@@ -15,10 +15,16 @@ public class Spikes : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Player"))
+        if (collision.gameObject.GetComponent<Rigidbody2D>() != null)
         {
-            Debug.Log("Spikes!!");
-            
+            if(collision.gameObject.GetComponent<PlayerMovement>() != null)
+            {
+                collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(transform, 5);
+            }
+            if (collision.gameObject.GetComponent<MovingEnemy>() != null)
+            {
+                collision.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5, 6.0f, 2.0f);
+            }
         }
     }
      

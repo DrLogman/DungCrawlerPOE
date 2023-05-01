@@ -23,6 +23,7 @@ public class MovingEnemy : EnemyAI
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemySize = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
+
     }
 
     void Update()
@@ -151,7 +152,7 @@ public class MovingEnemy : EnemyAI
     {
         if(DetectPlayer() == false)
         {
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(2.0f);
 
             if(DetectPlayer() == false)
             {
@@ -224,5 +225,6 @@ public class MovingEnemy : EnemyAI
         yield return new WaitForSeconds(0.3f);
         canMove = true;
     }
+
 
 }

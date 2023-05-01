@@ -17,7 +17,9 @@ public class PlayerMovement : MonoBehaviour
     private string lastWallSide, playerDirection;
     public bool invulnerable, dashActive, stopDashCooldown;
     public Coroutine dashCoroutine = null;
+    public Coroutine dashLineCoroutine = null;
     [SerializeField] Animator sliceAnimator;
+    LineRenderer lineRenderer;
 
     private void Start()
     {
@@ -30,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         canMove = true;
         dashActive = true;
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.enabled = false;
     }
     private void Update()
     {
@@ -46,9 +50,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         UpdateHealthBar();
-        if(dashCoroutine != null && stopDashCooldown == true)
+        if(dashCoroutine != null && dashLineCoroutine != null && stopDashCooldown == true)
         {
             StopCoroutine(dashCoroutine);
+            StopCoroutine(dashLineCoroutine);
             stopDashCooldown = false;
         }
 
@@ -213,6 +218,8 @@ public class PlayerMovement : MonoBehaviour
 
             playerRB.velocity = new Vector2(0, 0);
 
+            Vector3 startLinePosition = transform.position;
+
             // Casts ray from player, goes in direction of mouse for distance 5, hits layermask 6 (dashCollide)
 
             RaycastHit2D hit = Physics2D.Raycast(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right, dashStat, dashLayer);
@@ -251,13 +258,15 @@ public class PlayerMovement : MonoBehaviour
 
             playerRB.velocity = new Vector2(0, 0);
 
+            Vector3 endLinePosition = transform.position;
+
             StartCoroutine(FreezePlayer(0.1f));
 
             dashCoroutine = StartCoroutine(DashCooldown());
-            
-
 
             StartCoroutine(PlayerInvulnerable(1));
+
+            dashLineCoroutine = StartCoroutine(DrawDashLine(startLinePosition, endLinePosition));
         }
     }
 
@@ -327,6 +336,13 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
-        
 
+    IEnumerator DrawDashLine(Vector3 start, Vector3 end)
+    {
+        lineRenderer.enabled = true;
+        lineRenderer.SetPosition(0, start);
+        lineRenderer.SetPosition(1, end);
+        yield return new WaitForSeconds(1.0f);
+        lineRenderer.enabled = false;
+    }
 }
