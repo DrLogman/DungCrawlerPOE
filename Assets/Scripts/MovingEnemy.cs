@@ -9,6 +9,7 @@ public class MovingEnemy : EnemyAI
     [SerializeField] Transform fallCollider, touchCollider;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] GameObject skull;
     public float speed, health;
     string facingDirection;
     bool idle, canMove;
@@ -23,7 +24,6 @@ public class MovingEnemy : EnemyAI
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemySize = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
-
     }
 
     void Update()
@@ -177,10 +177,7 @@ public class MovingEnemy : EnemyAI
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawCube(touchCollider.position, new Vector3(0.5f, 1, 0));
-    }
+    
 
     public void TakeDamage(Transform playerTransform, float damage, float horizontalKB, float verticalKB)
     {
@@ -207,6 +204,9 @@ public class MovingEnemy : EnemyAI
             {
                 playerMovement.ResetDash();
             }
+
+
+            Instantiate(skull, transform.position, Quaternion.identity);
 
             Destroy(gameObject);
         }

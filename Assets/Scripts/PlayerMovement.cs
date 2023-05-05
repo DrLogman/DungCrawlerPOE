@@ -246,9 +246,14 @@ public class PlayerMovement : MonoBehaviour
             
             foreach(RaycastHit2D enemy in enemiesHit)
             {
-                if(enemy.collider != null)
+                if (enemy.collider.gameObject.GetComponent<MovingEnemy>() != null)
                 {
-                    enemy.collider.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5, 6, 2);
+                    enemy.collider.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5, 6, 2.0f);
+                }
+
+                if (enemy.collider.gameObject.GetComponent<SkeletonHead>() != null)
+                {
+                    enemy.collider.gameObject.GetComponent<SkeletonHead>().Break(this);
                 }
             }
 
@@ -327,7 +332,11 @@ public class PlayerMovement : MonoBehaviour
                 if (swordRay.collider.gameObject.GetComponent<MovingEnemy>() != null)
                 {
                     swordRay.collider.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5, 4, 1.5f);
+                }
 
+                if (swordRay.collider.gameObject.GetComponent<SkeletonHead>() != null)
+                {
+                    swordRay.collider.gameObject.GetComponent<SkeletonHead>().Break(this);
                 }
             }
 
