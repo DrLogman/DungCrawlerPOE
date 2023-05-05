@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &178077420634017909
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1741577239294035698, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_Name
+      value: Fall Collider1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560201, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 6973298d617295d49b035de2575684ca, type: 2}
+    - target: {fileID: 1741577239764560202, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_Name
+      value: Skeleton Mage
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560202, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741577240656616396, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: m_Name
+      value: TouchCollider1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+--- !u!4 &1897136110104382392 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1741577240656616397, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+  m_PrefabInstance: {fileID: 178077420634017909}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1897136110727526706 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+  m_PrefabInstance: {fileID: 178077420634017909}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1897136110727526716 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 1741577239764560201, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+  m_PrefabInstance: {fileID: 178077420634017909}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1897136110727526719 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1741577239764560202, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+  m_PrefabInstance: {fileID: 178077420634017909}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1685817630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897136110727526719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb7ea246317345e3a09fa6b3a96ea67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  idleLineOfSight: 20
+  chaseLineOfSight: 8
+  distanceToPlayer: 0
+  lineOfSight: 0
+  rb2d: {fileID: 1897136110727526716}
+  collideLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  chaseMinDistance: 0.8
+  fallCollider: {fileID: 1897136111464896134}
+  touchCollider: {fileID: 1897136110104382392}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  playerMovement: {fileID: 0}
+  rightProjectilePrefab: {fileID: 4004481894552123216, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
+  leftProjectilePrefab: {fileID: 1776306565102087116, guid: ea035ba853aa443c2bcf77ad4ba3f2c6, type: 3}
+  referencePoint: {fileID: 1897136110727526706}
+  delayTime: 0
+  repeatRate: 5
+  isAttacking: 0
+  offset: 2
+  DelayBetweenShots: 2
+  lastShotTime: 0
+  speed: 1
+  health: 10
+--- !u!4 &1897136111464896134 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1741577239294035699, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+  m_PrefabInstance: {fileID: 178077420634017909}
+  m_PrefabAsset: {fileID: 0}
