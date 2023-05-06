@@ -17,7 +17,7 @@ public class FlyingEnemy : EnemyAI
     bool idle, canMove;
     Vector3 enemySize;
     SpriteRenderer spriteRenderer;
-
+    Rigidbody2D rb2d;
 
     private void Start()
     {

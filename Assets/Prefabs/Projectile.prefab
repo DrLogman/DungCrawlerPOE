@@ -16,12 +16,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4004481894552123220, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004481894552123220, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004481894552123220, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004481894552123220, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.844004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4004481894552123220, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4004481894552123220, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
       propertyPath: m_LocalPosition.z
@@ -55,5 +67,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4004481894552123220, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4004481894552123217, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
+--- !u!1 &1776306565102087116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4004481894552123216, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
+  m_PrefabInstance: {fileID: 3401469486402477212}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3600534551496900465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776306565102087116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a5a77f6afb4fc4999858939fbee664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 20
+  speed: 3
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64

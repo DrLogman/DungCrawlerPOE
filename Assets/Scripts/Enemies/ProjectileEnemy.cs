@@ -15,6 +15,7 @@ public class ProjectileEnemy : EnemyAI
     [SerializeField] float offset;
     [SerializeField] float DelayBetweenShots;
     [SerializeField] float lastShotTime;
+    Rigidbody2D rb2d;
     public float speed, health;
     string facingDirection;
     bool idle, canMove;

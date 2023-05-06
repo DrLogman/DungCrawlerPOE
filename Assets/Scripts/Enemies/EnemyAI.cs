@@ -6,15 +6,8 @@ public class EnemyAI : MonoBehaviour
 {
     public Transform player;
     public float idleLineOfSight, chaseLineOfSight, distanceToPlayer, lineOfSight;
-    public Rigidbody2D rb2d;
     public LayerMask collideLayer;
     
-
-
-    void Start()
-    {
-        rb2d = GetComponent<Rigidbody2D>();
-    }
 
     public bool DetectPlayer()
     {

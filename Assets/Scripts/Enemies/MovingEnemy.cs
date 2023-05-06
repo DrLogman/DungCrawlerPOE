@@ -10,6 +10,7 @@ public class MovingEnemy : EnemyAI
     [SerializeField] LayerMask playerLayer;
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] GameObject skull;
+    Rigidbody2D rb2d;
     public float speed, health;
     string facingDirection;
     bool idle, canMove;

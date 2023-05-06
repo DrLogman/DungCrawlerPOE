@@ -2,28 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileTurret : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
-    [SerializeField] float speed;
-    [SerializeField] Transform projectile;
-    [SerializeField] float destroyTime;
-    [SerializeField] bool isGoingLeft;
+    [SerializeField] float destroyTime, speed;
     [SerializeField] LayerMask groundLayer;
-
 
     private void Start()
     {
         StartCoroutine(DestroyProjectile());
     }
+
     private void Update()
     {
-        MoveProjectile();
         DestroyOnGround();
-
+        MoveProjectile();
     }
+    private IEnumerator DestroyProjectile()
+    {
+        yield return new WaitForSeconds(destroyTime);
+        Destroy(gameObject);
+    }
+
+    void DestroyOnGround()
+    {
+        Collider2D col = Physics2D.OverlapBox(transform.position, new Vector2(transform.localScale.x * 1.1f, transform.localScale.y * 1.1f), 0, groundLayer);
+
+        if (col != null)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<Rigidbody2D>() != null)
+        if (collision.gameObject.GetComponent<Rigidbody2D>() != null)
         {
             if (collision.gameObject.GetComponent<PlayerMovement>() != null && collision.gameObject.GetComponent<PlayerMovement>().invulnerable == false)
             {
@@ -37,25 +49,9 @@ public class ProjectileTurret : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void MoveProjectile()
     {
-        transform.position = transform.right * speed;
-    }
-   
-    
-    private IEnumerator DestroyProjectile()
-    {
-        yield return new WaitForSeconds(destroyTime);
-        Destroy(gameObject);
-    }
-    
-    void DestroyOnGround()
-    {
-        Collider2D col = Physics2D.OverlapBox(transform.position, new Vector2(1, 1), 0, groundLayer);
-
-        if(col != null)
-        {
-            Destroy(gameObject);
-        }
+        transform.position += transform.right * Time.deltaTime * speed;
     }
 }
