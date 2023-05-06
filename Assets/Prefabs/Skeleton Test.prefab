@@ -195,6 +195,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   playerMovement: {fileID: 0}
+  skull: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
   speed: 3
   health: 15
 --- !u!1 &1741577240656616396

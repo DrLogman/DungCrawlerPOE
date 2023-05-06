@@ -23,8 +23,6 @@ public class FallingPlatform : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.layer);
-
         /* if (collision.gameObject.CompareTag("Player"))  
         {
             StartCoroutine(Fall());
@@ -38,7 +36,7 @@ public class FallingPlatform : MonoBehaviour
             
             StartCoroutine(Fall());
         }
-        if (isDestroyed == true)
+        if (isDestroyed == true && respawnTime != 0)
         {
             StartCoroutine(Respawn());
 

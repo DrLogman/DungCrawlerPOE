@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2508985806134847632, guid: 25db3f08759c74b6bb089c57deb2b47f, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2508985806134847632, guid: 25db3f08759c74b6bb089c57deb2b47f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -239,6 +239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton Test (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
@@ -388,6 +392,10 @@ PrefabInstance:
       value: Skeleton Test (15)
       objectReference: {fileID: 0}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1248407857}
@@ -457,6 +465,10 @@ PrefabInstance:
       value: Skeleton Test (12)
       objectReference: {fileID: 0}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1248407857}
@@ -506,7 +518,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2508985806134847632, guid: 25db3f08759c74b6bb089c57deb2b47f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2508985806134847632, guid: 25db3f08759c74b6bb089c57deb2b47f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -554,63 +566,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25db3f08759c74b6bb089c57deb2b47f, type: 3}
---- !u!1001 &260504052
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3046477383552142275, guid: 2fcfe6ef13e704b558a30f36ad05c731, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046477383552142275, guid: 2fcfe6ef13e704b558a30f36ad05c731, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -50.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046477383552142275, guid: 2fcfe6ef13e704b558a30f36ad05c731, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046477383552142275, guid: 2fcfe6ef13e704b558a30f36ad05c731, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046477383552142275, guid: 2fcfe6ef13e704b558a30f36ad05c731, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046477383552142275, guid: 2fcfe6ef13e704b558a30f36ad05c731, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046477383552142275, guid: 2fcfe6ef13e704b558a30f36ad05c731, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046477383552142275, guid: 2fcfe6ef13e704b558a30f36ad05c731, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046477383552142275, guid: 2fcfe6ef13e704b558a30f36ad05c731, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046477383552142275, guid: 2fcfe6ef13e704b558a30f36ad05c731, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046477383552142275, guid: 2fcfe6ef13e704b558a30f36ad05c731, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046477383552142328, guid: 2fcfe6ef13e704b558a30f36ad05c731, type: 3}
-      propertyPath: m_Name
-      value: Falling Platform (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2fcfe6ef13e704b558a30f36ad05c731, type: 3}
 --- !u!1001 &279489167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -620,7 +575,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: m_LocalPosition.x
@@ -666,6 +621,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton Test (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
@@ -808,6 +767,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton Test (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
@@ -1138,6 +1101,10 @@ PrefabInstance:
       value: Skeleton Test (14)
       objectReference: {fileID: 0}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1248407857}
@@ -1206,6 +1173,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton Test (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
@@ -6721,7 +6692,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &731797461
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6738,7 +6709,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!212 &731797462
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6779,7 +6750,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 23267cb4d80db5240876c3cc53e07d53, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6846,6 +6817,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton Test (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
@@ -6915,6 +6890,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton Test (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
@@ -7061,6 +7040,10 @@ PrefabInstance:
       value: Skeleton Test (21)
       objectReference: {fileID: 0}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1248407857}
@@ -7079,7 +7062,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7129,6 +7112,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton Test (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
@@ -7195,6 +7182,10 @@ PrefabInstance:
       value: Skeleton Test (10)
       objectReference: {fileID: 0}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1248407857}
@@ -7213,7 +7204,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1741577239764560199, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7263,6 +7254,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton Test (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
@@ -7332,6 +7327,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton Test (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
@@ -7525,6 +7524,10 @@ PrefabInstance:
       value: Skeleton Test (16)
       objectReference: {fileID: 0}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1248407857}
@@ -7589,6 +7592,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton Test (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
@@ -8009,6 +8016,10 @@ PrefabInstance:
       value: Skeleton Test (19)
       objectReference: {fileID: 0}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1248407857}
@@ -8078,6 +8089,10 @@ PrefabInstance:
       value: Skeleton Test (17)
       objectReference: {fileID: 0}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1248407857}
@@ -8143,6 +8158,10 @@ PrefabInstance:
       value: Skeleton Test (11)
       objectReference: {fileID: 0}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1248407857}
@@ -8152,6 +8171,63 @@ PrefabInstance:
       objectReference: {fileID: 1248407853}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+--- !u!1001 &1426614431
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3046477383552142275, guid: 649871abf08c044a6b3050c6142af2bc, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046477383552142275, guid: 649871abf08c044a6b3050c6142af2bc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -50.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046477383552142275, guid: 649871abf08c044a6b3050c6142af2bc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046477383552142275, guid: 649871abf08c044a6b3050c6142af2bc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046477383552142275, guid: 649871abf08c044a6b3050c6142af2bc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046477383552142275, guid: 649871abf08c044a6b3050c6142af2bc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046477383552142275, guid: 649871abf08c044a6b3050c6142af2bc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046477383552142275, guid: 649871abf08c044a6b3050c6142af2bc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046477383552142275, guid: 649871abf08c044a6b3050c6142af2bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046477383552142275, guid: 649871abf08c044a6b3050c6142af2bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046477383552142275, guid: 649871abf08c044a6b3050c6142af2bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046477383552142328, guid: 649871abf08c044a6b3050c6142af2bc, type: 3}
+      propertyPath: m_Name
+      value: Spikes
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 649871abf08c044a6b3050c6142af2bc, type: 3}
 --- !u!1 &1501780486
 GameObject:
   m_ObjectHideFlags: 0
@@ -8313,6 +8389,10 @@ PrefabInstance:
       value: Skeleton Test (13)
       objectReference: {fileID: 0}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1248407857}
@@ -8443,6 +8523,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton Test (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
@@ -8646,6 +8730,10 @@ PrefabInstance:
       value: Skeleton Test (9)
       objectReference: {fileID: 0}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1248407857}
@@ -8714,6 +8802,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton Test (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 
@@ -8840,6 +8932,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton Test
       objectReference: {fileID: 0}
+    - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: player
       value: 

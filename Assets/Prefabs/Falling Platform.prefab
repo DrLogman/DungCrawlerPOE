@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallingDelay: 0.5
   destroyDelay: 1.6
-  respawnTime: 2
+  respawnTime: 0
   isDestroyed: 0
   enemyLayer:
     serializedVersion: 2

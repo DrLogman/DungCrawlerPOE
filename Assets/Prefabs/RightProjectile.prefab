@@ -125,6 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  projectile: {fileID: 0}
-  destroyTime: 6
-  isGoingLeft: 0
+  projectile: {fileID: 4004481894552123220}
+  destroyTime: 15
+  isGoingLeft: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64

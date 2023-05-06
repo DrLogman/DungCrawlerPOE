@@ -9,11 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4004481894552123216, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
       propertyPath: m_Name
-      value: LeftProjectile
-      objectReference: {fileID: 0}
-    - target: {fileID: 4004481894552123217, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
-      propertyPath: isGoingLeft
-      value: 1
+      value: Projectile
       objectReference: {fileID: 0}
     - target: {fileID: 4004481894552123220, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
       propertyPath: m_RootOrder

@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         playerDirection = "left";
         invulnerable = false;
         maxHP = 100;
-        health = maxHP;
+        health = GameController.savedPlayerHealth;
         playerRB = GetComponent<Rigidbody2D>();
         canMove = true;
         dashActive = true;

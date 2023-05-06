@@ -36,7 +36,7 @@ public class SkeletonHead : MonoBehaviour
 
         if(groundCollision != null)
         {
-            Destroy(gameObject, 1.5f);
+            Destroy(gameObject, 0.5f);
         }
     }
 }

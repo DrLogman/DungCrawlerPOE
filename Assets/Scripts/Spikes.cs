@@ -13,7 +13,7 @@ public class Spikes : MonoBehaviour
        
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) //make physics collider and check every frame
     {
         if (collision.gameObject.GetComponent<Rigidbody2D>() != null)
         {
