@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove, isOnWall, isGrounded, doubleJump, wallJump, wallJumpReset, canSlice;
     private float lastYPos;
     private string lastWallSide, playerDirection;
-    public bool invulnerable, dashActive, stopDashCooldown;
+    public bool invulnerable, dashActive, stopDashCooldown, canExit;
     public Coroutine dashCoroutine = null;
     public Coroutine dashLineCoroutine = null;
     [SerializeField] Animator sliceAnimator;
@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         dashActive = true;
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
+        Debug.Log(playerDirection);
     }
     private void Update()
     {
@@ -255,6 +256,11 @@ public class PlayerMovement : MonoBehaviour
                 {
                     enemy.collider.gameObject.GetComponent<SkeletonHead>().Break(this);
                 }
+
+                if (enemy.collider.gameObject.GetComponent<FlyingEnemy>() != null)
+                {
+                    enemy.collider.gameObject.GetComponent<FlyingEnemy>().TakeDamage(transform, 5);
+                }
             }
 
             Debug.DrawRay(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right * dashStat, Color.green, 0.5f);
@@ -334,9 +340,9 @@ public class PlayerMovement : MonoBehaviour
                     swordRay.collider.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5, 4, 1.5f);
                 }
 
-                if (swordRay.collider.gameObject.GetComponent<SkeletonHead>() != null)
+                if (swordRay.collider.gameObject.GetComponent<FlyingEnemy>() != null)
                 {
-                    swordRay.collider.gameObject.GetComponent<SkeletonHead>().Break(this);
+                    swordRay.collider.gameObject.GetComponent<FlyingEnemy>().TakeDamage(transform, 5);
                 }
             }
 
@@ -353,5 +359,25 @@ public class PlayerMovement : MonoBehaviour
         lineRenderer.SetPosition(1, end);
         yield return new WaitForSeconds(1.0f);
         lineRenderer.enabled = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "ExitDoor")
+        {
+            canExit = true;
+        }
+        if(collision.tag == "Challenge")
+        {
+            collision.GetComponent<ChallengeWalls>().MoveUp();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "ExitDoor")
+        {
+            canExit = false;
+        }
     }
 }

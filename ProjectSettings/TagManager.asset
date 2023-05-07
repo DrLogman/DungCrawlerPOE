@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Wall
   - Enemy
+  - ExitDoor
+  - Challenge
   layers:
   - Default
   - TransparentFX

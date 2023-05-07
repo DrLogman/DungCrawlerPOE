@@ -16,21 +16,14 @@ public class GameController : MonoBehaviour
         {
             scenesChosen.Clear();
         }
-        for (int i = 0; i < 3; i++)
+        while(scenesChosen.Count < 3)
         {
-            bool stop = false;
-            while(stop == false)
+            int rand = (int)(Random.Range(0, sceneNames.Length));
+            if (!scenesChosen.Contains(sceneNames[rand]))
             {
-                int rand = Random.Range(0, sceneNames.Length);
-                if (!scenesChosen.Contains(sceneNames[rand]))
-                {
-                    scenesChosen.Add(sceneNames[rand]);
-                    stop = true;
-                }
+                scenesChosen.Add(sceneNames[rand]);
             }
-            
         }
-
         currentSceneNumber = 0;
     }
 
