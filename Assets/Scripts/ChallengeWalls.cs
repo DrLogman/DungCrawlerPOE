@@ -5,11 +5,19 @@ using UnityEngine;
 public class ChallengeWalls : MonoBehaviour
 {
     [SerializeField] GameObject[] enemiesNeeded;
+    [SerializeField] bool startUp;
     bool movedUp, deleteAfter;
+
     private void Start()
     {
-        StartCoroutine(MoveDown());
         deleteAfter = false;
+        if(startUp)
+        {
+            movedUp = true;
+        } else
+        {
+            StartCoroutine(MoveDown());
+        }
     }
     private void Update()
     {

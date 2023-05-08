@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float speed, jumpForce, maxHP, health;
+    [SerializeField] float speed, jumpForce, maxHP;
     [SerializeField] float dashStat, dashCooldown, sliceCooldown;
     [SerializeField] SwordPointer swordPointer;
     [SerializeField] LayerMask dashLayer, enemyLayer;
@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public Coroutine dashLineCoroutine = null;
     [SerializeField] Animator sliceAnimator;
     LineRenderer lineRenderer;
+    public float health;
 
     private void Start()
     {
@@ -321,6 +322,7 @@ public class PlayerMovement : MonoBehaviour
         if(canSlice == true)
         {
             RaycastHit2D swordRay = Physics2D.Raycast(transform.position, swordPointer.transform.rotation * Vector2.right, 1.75f /* sword length */, enemyLayer);
+            Debug.DrawRay(transform.position, swordPointer.transform.rotation * Vector2.right * 1.75f, Color.blue, 1.75f);
             if (swordPointer.mousePos.x - transform.position.x >= 0)
             {
                 sliceTransform.localScale = new Vector3(8.9f, 8.9f, 8.9f);
