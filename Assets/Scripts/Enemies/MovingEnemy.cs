@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MovingEnemy : EnemyAI
 {
-    [SerializeField] float chaseMinDistance;
+    [SerializeField] float chaseMinDistance, strength;
     [SerializeField] Transform fallCollider, touchCollider;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] PlayerMovement playerMovement;
@@ -173,7 +173,7 @@ public class MovingEnemy : EnemyAI
 
             if(touchCollision != null && touchCollision.tag == "Player")
             {
-                playerMovement.TakeDamage(transform, 10);
+                playerMovement.TakeDamage(transform, strength);
             }
         }
     }

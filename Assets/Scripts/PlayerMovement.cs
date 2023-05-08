@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private string lastWallSide, playerDirection;
     public bool invulnerable, dashActive, stopDashCooldown, canExit;
     public Coroutine dashCoroutine = null;
+    public Coroutine invulnCoroutine;
     public Coroutine dashLineCoroutine = null;
     [SerializeField] Animator sliceAnimator;
     LineRenderer lineRenderer;
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        GameController.staticPlayer = this;
         canSlice = true;
         stopDashCooldown = false;
         playerDirection = "left";
@@ -176,7 +178,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 damageForce;
             health -= damageTaken;
-            StartCoroutine(PlayerInvulnerable(2.0f));
+            if(invulnCoroutine != null)
+            {
+                StopCoroutine(invulnCoroutine);
+            }
+            invulnCoroutine = StartCoroutine(PlayerInvulnerable(2.0f));
             if (health > 0)
             {
                 if (attackTransform.position.x > transform.position.x)
@@ -276,7 +282,17 @@ public class PlayerMovement : MonoBehaviour
 
             dashCoroutine = StartCoroutine(DashCooldown());
 
-            StartCoroutine(PlayerInvulnerable(1));
+            if (invulnCoroutine != null)
+            {
+                StopCoroutine(invulnCoroutine);
+            }
+
+            invulnCoroutine = StartCoroutine(PlayerInvulnerable(1));
+
+            if(dashLineCoroutine != null)
+            {
+                StopCoroutine(dashLineCoroutine);
+            }
 
             dashLineCoroutine = StartCoroutine(DrawDashLine(startLinePosition, endLinePosition));
         }
@@ -311,6 +327,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void ResetDash() //dont work :(
+    {
+        stopDashCooldown = true;
+        Debug.Log("REeseyt");
+        dashActive = true;
+    }
+
+    public void ResetInvuln() //dont work :(
     {
         stopDashCooldown = true;
         Debug.Log("REeseyt");

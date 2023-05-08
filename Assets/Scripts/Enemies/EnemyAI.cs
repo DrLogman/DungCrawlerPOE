@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour
     {
         if(distanceToPlayer < lineOfSight)
         {
-            Vector2 directionToPlayer = new Vector2((player.transform.position.x - transform.position.x), (player.transform.position.y - transform.position.y));
+            Vector2 directionToPlayer = new Vector2((GameController.staticPlayer.transform.position.x - transform.position.x), (GameController.staticPlayer.transform.position.y - transform.position.y));
             RaycastHit2D playerHit = Physics2D.Raycast(transform.position, directionToPlayer, distanceToPlayer, collideLayer);
 
             if(playerHit.collider == null)
@@ -30,7 +30,11 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        distanceToPlayer = Vector2.Distance(transform.position, GameController.staticPlayer.transform.position);
+        if(player == null)
+        {
+            player = GameController.staticPlayer.transform;
+        }
     }
 
 }

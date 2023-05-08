@@ -184,11 +184,11 @@ MonoBehaviour:
   chaseLineOfSight: 10
   distanceToPlayer: 0
   lineOfSight: 0
-  rb2d: {fileID: 1741577239764560201}
   collideLayer:
     serializedVersion: 2
     m_Bits: 64
   chaseMinDistance: 0.6
+  strength: 10
   fallCollider: {fileID: 1741577239294035699}
   touchCollider: {fileID: 1741577240656616397}
   playerLayer:

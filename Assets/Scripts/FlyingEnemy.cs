@@ -5,7 +5,6 @@ using UnityEngine;
 public class FlyingEnemy : EnemyAI
 {
     [SerializeField] float health, speed, turnSpeed;
-    [SerializeField] PlayerMovement playerMovement;
     [SerializeField] LayerMask playerLayer;
     bool idle, canMove;
     Rigidbody2D rb2d;
@@ -44,13 +43,13 @@ public class FlyingEnemy : EnemyAI
     }
     void DamagePlayer()
     {
-        if (distanceToPlayer < 1 && playerMovement.invulnerable == false)
+        if (distanceToPlayer < 1 && GameController.staticPlayer.invulnerable == false)
         {
             Collider2D touchCollision = Physics2D.OverlapBox(transform.position, new Vector2(4, 2.0f), 0, playerLayer);
 
             if (touchCollision != null && touchCollision.tag == "Player")
             {
-                playerMovement.TakeDamage(transform, 10);
+                GameController.staticPlayer.TakeDamage(transform, 10);
             }
         }
     }
@@ -68,15 +67,15 @@ public class FlyingEnemy : EnemyAI
         {
             Vector3 damageForce;
 
-            damageForce = (transform.position - player.position);
+            damageForce = (transform.position - GameController.staticPlayer.transform.position);
 
             StartCoroutine(EnemyKnockback(damageForce * 2f, 4));
         }
         else if (health <= 0)
         {
-            if (playerMovement.dashActive == false)
+            if (GameController.staticPlayer.dashActive == false)
             {
-                playerMovement.ResetDash();
+                GameController.staticPlayer.ResetDash();
             }
 
             Destroy(gameObject);
