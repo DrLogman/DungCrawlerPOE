@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1741577239764560201}
   - component: {fileID: 1741577239764560200}
   - component: {fileID: 1741577239764560203}
-  - component: {fileID: 113749816652944990}
+  - component: {fileID: 2399263406843564666}
   m_Layer: 7
   m_Name: Skeleton Test
   m_TagString: Untagged
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -200,14 +200,14 @@ MonoBehaviour:
   skull: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
   speed: 3
   health: 15
---- !u!114 &113749816652944990
+--- !u!114 &2399263406843564666
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741577239764560202}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
   m_Name: 
@@ -217,46 +217,25 @@ MonoBehaviour:
   m_HasRenderer: 1
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
-  m_SelfShadows: 1
+  m_SelfShadows: 0
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -0.013878226, y: -0.04167825, z: 0}
-  - {x: 0.055084586, y: -0.16171461, z: 0}
-  - {x: 0.003854394, y: -0.1608203, z: 0}
-  - {x: -0.0227139, y: -0.066501975, z: 0}
-  - {x: -0.029591322, y: -0.1607936, z: 0}
-  - {x: -0.075776696, y: -0.1527614, z: 0}
-  - {x: -0.08180094, y: -0.13167673, z: 0}
-  - {x: -0.05167997, y: -0.104567945, z: 0}
-  - {x: -0.06172037, y: -0.072438896, z: 0}
-  - {x: -0.09987354, y: -0.070430815, z: 0}
-  - {x: -0.12999439, y: -0.035289705, z: 0}
-  - {x: -0.13200247, y: 0.019932032, z: 0}
-  - {x: -0.097866535, y: 0.0490489, z: 0}
-  - {x: -0.07075763, y: 0.0490489, z: 0}
-  - {x: -0.035616517, y: 0.030976295, z: 0}
-  - {x: -0.014531851, y: 0.05206096, z: 0}
-  - {x: -0.029592395, y: 0.07013357, z: 0}
-  - {x: -0.031600475, y: 0.09121823, z: 0}
-  - {x: -0.01252377, y: 0.1072827, z: 0}
-  - {x: 0.031653523, y: 0.10828674, z: 0}
-  - {x: 0.04872203, y: 0.08921015, z: 0}
-  - {x: 0.040806293, y: 0.045540452, z: 0}
-  - {x: -0.00047540665, y: 0.039008558, z: 0}
-  - {x: 0.0015326738, y: 0.026960194, z: 0}
-  - {x: 0.041693926, y: 0.028968275, z: 0}
-  - {x: 0.031653523, y: 0.0038674474, z: 0}
-  - {x: 0.05374229, y: 0.0018593669, z: 0}
-  - {x: 0.075831056, y: 0.031980336, z: 0}
-  - {x: 0.0798471, y: 0.15045607, z: 0}
-  - {x: 0.10789764, y: 0.1286149, z: 0}
-  - {x: 0.1092087, y: 0.038811207, z: 0}
-  - {x: 0.10353851, y: -0.021515489, z: 0}
-  - {x: 0.07741737, y: -0.008454919, z: 0}
-  - {x: 0.028077364, y: -0.021515489, z: 0}
-  m_ShapePathHash: -896769147
+  - {x: -0.077884555, y: -0.15599436, z: 0}
+  - {x: -0.046564817, y: -0.09739596, z: 0}
+  - {x: -0.12868035, y: -0.049328387, z: 0}
+  - {x: -0.1271789, y: 0.02781409, z: 0}
+  - {x: -0.06859577, y: 0.046806872, z: 0}
+  - {x: -0.028539538, y: 0.03478992, z: 0}
+  - {x: -0.026536703, y: 0.09187025, z: 0}
+  - {x: -0.0045056343, y: 0.10388708, z: 0}
+  - {x: 0.040557742, y: 0.101884305, z: 0}
+  - {x: 0.09190416, y: 0.14898449, z: 0}
+  - {x: 0.12495065, y: 0.028264761, z: 0}
+  - {x: 0.108653426, y: -0.025294602, z: 0}
+  - {x: 0.05457747, y: -0.15647906, z: 0}
+  m_ShapePathHash: 1666568359
   m_Mesh: {fileID: 0}
-  m_InstanceId: 48778
+  m_InstanceId: 56630
 --- !u!1 &1741577240656616396
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +315,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.611
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.85490197, b: 0.7411765, a: 1}
   m_Intensity: 0.6
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
