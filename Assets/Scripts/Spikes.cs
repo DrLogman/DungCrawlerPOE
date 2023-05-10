@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Spikes : MonoBehaviour
 {
+    [SerializeField] float damage, horizontalKB, verticalKB;
+    
     
     
     //spiky
@@ -19,11 +21,11 @@ public class Spikes : MonoBehaviour
         {
             if(collision.gameObject.GetComponent<PlayerMovement>() != null)
             {
-                collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(transform, 5);
+                collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(transform, damage);
             }
             if (collision.gameObject.GetComponent<MovingEnemy>() != null)
             {
-                collision.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5, 6.0f, 2.0f);
+                collision.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, damage, horizontalKB, verticalKB);
             }
         }
     }

@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float speed, jumpForce, maxHP;
+    public float speed, jumpForce, maxHP;
+    public float gravityDownScale;
     [SerializeField] float dashStat, dashCooldown, sliceCooldown;
     [SerializeField] SwordPointer swordPointer;
     [SerializeField] LayerMask dashLayer, enemyLayer;
@@ -15,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove, isOnWall, isGrounded, doubleJump, wallJump, wallJumpReset, canSlice;
     private float lastYPos;
     private string lastWallSide, playerDirection;
-    public bool invulnerable, dashActive, stopDashCooldown, canExit;
+    public bool invulnerable, dashActive, stopDashCooldown, canExit, isStickyWallStuck, isWeightedDown;
     public Coroutine dashCoroutine = null;
     public Coroutine invulnCoroutine;
     public Coroutine dashLineCoroutine = null;
@@ -41,11 +42,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        WallStickyRun();
         if (canMove == true)
         {
             PlayerMove();
             Jump();
             Dash();
+            
         }
         
         if(Input.GetMouseButtonDown(0))
@@ -86,6 +89,23 @@ public class PlayerMovement : MonoBehaviour
         
         playerRB.velocity = new Vector2(horizontalMovement * speed, playerRB.velocity.y);
         
+    }
+    public void WallStickyRun()
+    {
+
+        if (isStickyWallStuck == true)
+        {
+            Debug.Log("Move");
+            playerRB.gravityScale = 0.0f;
+            float verticalMovement = Input.GetAxisRaw("Vertical");
+            playerRB.velocity = new Vector2(playerRB.velocity.x, verticalMovement * speed);
+        }
+        if (isStickyWallStuck == false && isWeightedDown == true)
+        {
+            playerRB.gravityScale = 1.0f;
+        }
+        
+
     }
 
     private void Jump()
@@ -405,4 +425,5 @@ public class PlayerMovement : MonoBehaviour
             canExit = false;
         }
     }
+    
 }
