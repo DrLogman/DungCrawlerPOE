@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Projectile
       objectReference: {fileID: 0}
+    - target: {fileID: 4004481894552123218, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4004481894552123220, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
       propertyPath: m_RootOrder
       value: 0

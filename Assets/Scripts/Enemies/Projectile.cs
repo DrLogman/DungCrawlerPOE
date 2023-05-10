@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
 
     void DestroyOnGround()
     {
-        Collider2D col = Physics2D.OverlapBox(transform.position, new Vector2(transform.localScale.x * 1.1f, transform.localScale.y * 1.1f), 0, groundLayer);
+        Collider2D col = Physics2D.OverlapBox(transform.position, new Vector2(transform.localScale.x * 1.2f, transform.localScale.y * 1.2f), 0, groundLayer);
 
         if (col != null)
         {

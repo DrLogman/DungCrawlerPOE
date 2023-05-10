@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,8 +124,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 522b04f20171b497ea20d44a340fb869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  idleLineOfSight: 0
+  chaseLineOfSight: 0
+  distanceToPlayer: 0
+  lineOfSight: 0
+  collideLayer:
+    serializedVersion: 2
+    m_Bits: 0
   projectilePrefab: {fileID: 1776306565102087116, guid: ea035ba853aa443c2bcf77ad4ba3f2c6, type: 3}
-  referencePoint: {fileID: 1131522829654116431}
   delayTime: 2
   repeatRate: 2
-  isAttacking: 0
+  turnSpeed: 0
+  rangeless: 0
+  canRotate: 0
