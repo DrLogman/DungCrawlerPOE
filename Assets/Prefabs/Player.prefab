@@ -466,7 +466,7 @@ Transform:
   m_GameObject: {fileID: 3299435164292576184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.08, y: -4.44, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3299435162853807033}
@@ -591,6 +591,7 @@ MonoBehaviour:
   speed: 8
   jumpForce: 8
   maxHP: 100
+  gravityDownScale: 0
   dashStat: 5
   dashCooldown: 3
   sliceCooldown: 0.4
@@ -610,6 +611,8 @@ MonoBehaviour:
   dashActive: 0
   stopDashCooldown: 0
   canExit: 0
+  isStickyWallStuck: 0
+  isWeightedDown: 0
   sliceAnimator: {fileID: 3299435162678334785}
   health: 100
 --- !u!120 &3299435164292576166
