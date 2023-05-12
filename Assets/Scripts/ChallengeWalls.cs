@@ -32,6 +32,7 @@ public class ChallengeWalls : MonoBehaviour
 
     IEnumerator MoveDown()
     {
+        yield return new WaitForSeconds(2);
         Vector3 startPosition = transform.position;
         Vector3 destination = new Vector3(transform.position.x, transform.position.y - transform.localScale.y, transform.position.z);
         float t = 0.0f;
