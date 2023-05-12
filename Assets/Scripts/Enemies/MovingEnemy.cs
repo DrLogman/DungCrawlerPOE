@@ -10,6 +10,7 @@ public class MovingEnemy : EnemyAI
     [SerializeField] LayerMask playerLayer;
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] GameObject skull;
+    Animator enemyAnimator;
     Rigidbody2D rb2d;
     public float speed, health;
     string facingDirection;
@@ -20,11 +21,13 @@ public class MovingEnemy : EnemyAI
 
     private void Start()
     {
+        enemyAnimator = GetComponent<Animator>();
         facingDirection = "left";
         canMove = true;
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemySize = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        
     }
 
     void Update()
@@ -38,9 +41,19 @@ public class MovingEnemy : EnemyAI
             Patrol();
         }
         DamagePlayer();
+        DetectMoving();
     }
 
-
+    void DetectMoving()
+    {
+        if(rb2d.velocity.x != 0)
+        {
+            enemyAnimator.SetBool("IsWalking", true);
+        } else
+        {
+            enemyAnimator.SetBool("IsWalking", false);
+        }
+    }
     
 
 
@@ -73,11 +86,11 @@ public class MovingEnemy : EnemyAI
     {
         if(facingDirection == "right")
         {
-            transform.localScale = new Vector3(enemySize.x, enemySize.y, enemySize.z);
+            transform.localScale = new Vector3(-enemySize.x, enemySize.y, enemySize.z);
         }
         if(facingDirection == "left")
         {
-            transform.localScale = new Vector3(-enemySize.x, enemySize.y, enemySize.z);
+            transform.localScale = new Vector3(enemySize.x, enemySize.y, enemySize.z);
         }
     }
     void StopChasingPlayer()
@@ -158,9 +171,12 @@ public class MovingEnemy : EnemyAI
             if(DetectPlayer() == false)
             {
                 idle = true;
+                enemyAnimator.speed = 0.5f;
+                
             } else
             {
                 idle = false;
+                enemyAnimator.speed = 1.0f;
             }
         }
     }
@@ -173,6 +189,7 @@ public class MovingEnemy : EnemyAI
 
             if(touchCollision != null && touchCollision.tag == "Player")
             {
+                enemyAnimator.SetTrigger("Attack");
                 playerMovement.TakeDamage(transform, strength);
             }
         }
