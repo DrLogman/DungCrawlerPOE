@@ -224,7 +224,7 @@ public class MovingEnemy : EnemyAI
             }
 
 
-            Instantiate(skull, transform.position, Quaternion.identity);
+            Instantiate(skull, new Vector3(transform.position.x, transform.position.y + 0.2f, transform.position.z), Quaternion.identity);
 
             Destroy(gameObject);
         }

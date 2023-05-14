@@ -364,8 +364,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(canSlice == true)
         {
-            RaycastHit2D swordRay = Physics2D.Raycast(transform.position, swordPointer.transform.rotation * Vector2.right, 1.75f /* sword length */, enemyLayer);
-            Debug.DrawRay(transform.position, swordPointer.transform.rotation * Vector2.right * 1.75f, Color.blue, 1.75f);
+            RaycastHit2D swordRay = Physics2D.Raycast(transform.position, swordPointer.transform.rotation * Vector2.right, 1.5f /* sword length */, enemyLayer);
+            Debug.DrawRay(transform.position, swordPointer.transform.rotation * Vector2.right * 1.5f, Color.blue, 1.5f);
             if (swordPointer.mousePos.x - transform.position.x >= 0)
             {
                 sliceTransform.localScale = new Vector3(8.9f, 8.9f, 8.9f);
