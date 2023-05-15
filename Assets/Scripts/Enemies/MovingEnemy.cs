@@ -39,6 +39,7 @@ public class MovingEnemy : EnemyAI
         distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         CheckForChase();
+        DetectDirection();
         CheckDirection();
         if (idle == true)
         {
@@ -52,6 +53,21 @@ public class MovingEnemy : EnemyAI
             StartCoroutine(CheckProjectile());
         }
         DetectMoving();
+    }
+
+    void DetectDirection()
+    {
+        if(DetectPlayer())
+        {
+            if (transform.position.x < player.position.x)
+            {
+                facingDirection = "right";
+            }
+            else
+            {
+                facingDirection = "left";
+            }
+        }
     }
 
     void DetectMoving()
@@ -212,8 +228,10 @@ public class MovingEnemy : EnemyAI
             if (Mathf.Abs(transform.position.x - playerMovement.transform.position.x) <= chaseMinDistance && DetectPlayer())
             {
                 canShoot = false;
+                enemyAnimator.SetTrigger("Fire");
+                yield return new WaitForSeconds(1.8f);
                 StartCoroutine(ShootProjectile());
-                yield return new WaitForSeconds(2.0f);
+                yield return new WaitForSeconds(0.1f);
                 canShoot = true;
             }
             else
@@ -226,14 +244,8 @@ public class MovingEnemy : EnemyAI
     IEnumerator ShootProjectile()
     {
         Vector3 vectorToPlayer = playerMovement.transform.position - transform.position;
-        if (facingDirection == "left")
-        {
-            vectorToPlayer = playerMovement.transform.position - transform.position;
-        }
-        if (facingDirection == "right")
-        {
-            vectorToPlayer = transform.position - playerMovement.transform.position;
-        }
+       
+        
         justShot = true;
         Instantiate(projectilePrefab, transform.position, Quaternion.AngleAxis((Mathf.Atan2(vectorToPlayer.y, vectorToPlayer.x) * Mathf.Rad2Deg), Vector3.forward));
         yield return new WaitForSeconds(0.3f);

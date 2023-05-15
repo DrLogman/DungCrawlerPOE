@@ -32,7 +32,7 @@ public class SkeletonHead : MonoBehaviour
     }
     void DetectGround()
     {
-        Collider2D groundCollision = Physics2D.OverlapBox(transform.position, new Vector2(transform.localScale.x + 0.1f, transform.localScale.y + 0.1f), 0, groundLayer);
+        Collider2D groundCollision = Physics2D.OverlapBox(transform.position, new Vector2(transform.localScale.x + 0.01f, transform.localScale.y + 0.01f), 0, groundLayer);
 
         if(groundCollision != null)
         {

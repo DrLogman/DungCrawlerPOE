@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4004481894552123218, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4004481894552123220, guid: 28eb699acb8c94ebe97cdaead1a49948, type: 3}
       propertyPath: m_RootOrder
@@ -100,3 +100,5 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  ignorePlayer: 0
+  ignoreEnemies: 0
