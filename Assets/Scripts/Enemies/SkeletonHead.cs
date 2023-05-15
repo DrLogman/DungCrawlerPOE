@@ -11,7 +11,7 @@ public class SkeletonHead : MonoBehaviour
     private void Start()
     {
         skullRB = GetComponent<Rigidbody2D>();
-        skullRB.velocity = new Vector2(0, 5);
+        skullRB.velocity = new Vector2(0, 4);
         skullRB.AddTorque(5);
     }
 

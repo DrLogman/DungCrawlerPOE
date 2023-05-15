@@ -10,17 +10,21 @@ public class MovingEnemy : EnemyAI
     [SerializeField] LayerMask playerLayer;
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] GameObject skull;
+    [SerializeField] bool projectileEnemy;
+    [SerializeField] private GameObject projectilePrefab;
     Animator enemyAnimator;
     Rigidbody2D rb2d;
     public float speed, health;
+    public bool justShot;
     string facingDirection;
-    bool idle, canMove;
+    bool idle, canMove, canShoot;
     Vector3 enemySize;
     SpriteRenderer spriteRenderer;
 
 
     private void Start()
     {
+        canShoot = true;
         enemyAnimator = GetComponent<Animator>();
         facingDirection = "left";
         canMove = true;
@@ -40,7 +44,13 @@ public class MovingEnemy : EnemyAI
         {
             Patrol();
         }
-        DamagePlayer();
+        if(!projectileEnemy)
+        {
+            DamagePlayer();
+        } else
+        {
+            StartCoroutine(CheckProjectile());
+        }
         DetectMoving();
     }
 
@@ -195,7 +205,41 @@ public class MovingEnemy : EnemyAI
         }
     }
 
-    
+    IEnumerator CheckProjectile()
+    { 
+        if(canShoot)
+        {
+            if (Mathf.Abs(transform.position.x - playerMovement.transform.position.x) <= chaseMinDistance && DetectPlayer())
+            {
+                canShoot = false;
+                StartCoroutine(ShootProjectile());
+                yield return new WaitForSeconds(2.0f);
+                canShoot = true;
+            }
+            else
+            {
+                yield return 0;
+            }
+        }
+    }
+
+    IEnumerator ShootProjectile()
+    {
+        Vector3 vectorToPlayer = playerMovement.transform.position - transform.position;
+        if (facingDirection == "left")
+        {
+            vectorToPlayer = playerMovement.transform.position - transform.position;
+        }
+        if (facingDirection == "right")
+        {
+            vectorToPlayer = transform.position - playerMovement.transform.position;
+        }
+        justShot = true;
+        Instantiate(projectilePrefab, transform.position, Quaternion.AngleAxis((Mathf.Atan2(vectorToPlayer.y, vectorToPlayer.x) * Mathf.Rad2Deg), Vector3.forward));
+        yield return new WaitForSeconds(0.3f);
+        justShot = false;
+
+    }
 
     public void TakeDamage(Transform playerTransform, float damage, float horizontalKB, float verticalKB)
     {
@@ -224,7 +268,7 @@ public class MovingEnemy : EnemyAI
             }
 
 
-            Instantiate(skull, transform.position, Quaternion.identity);
+            Instantiate(skull, new Vector3(transform.position.x, transform.position.y + 0.2f, transform.position.z), Quaternion.identity);
 
             Destroy(gameObject);
         }

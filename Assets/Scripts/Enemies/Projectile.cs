@@ -43,7 +43,7 @@ public class Projectile : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        if (collision.gameObject.GetComponent<MovingEnemy>() != null)
+        if (collision.gameObject.GetComponent<MovingEnemy>() != null && collision.gameObject.GetComponent<MovingEnemy>().justShot == false)
         {
             collision.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5, 6.0f, 2.0f);
             Destroy(gameObject);

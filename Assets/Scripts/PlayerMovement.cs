@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D playerRB;
     private bool canMove, isOnWall, isGrounded, doubleJump, wallJump, wallJumpReset, canSlice;
     private float lastYPos;
-    private string lastWallSide, playerDirection;
+    public string lastWallSide, playerDirection;
     public bool invulnerable, dashActive, stopDashCooldown, canExit, isStickyWallStuck, isWeightedDown;
     public Coroutine dashCoroutine = null;
     public Coroutine invulnCoroutine;
@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
         GameController.staticPlayer = this;
         canSlice = true;
         stopDashCooldown = false;
-        playerDirection = "left";
+        playerDirection = "right";
         invulnerable = false;
         maxHP = 100;
         health = GameController.savedPlayerHealth;
@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        CheckPlayerDirection();
         WallStickyRun();
         if (canMove == true)
         {
@@ -73,7 +74,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckPlayerDirection()
     {
-        //Add code for turning and all that
+        if (swordPointer.mousePos.x - transform.position.x < 0 && canMove)
+        {
+            playerDirection = "left";
+        }
+        if (swordPointer.mousePos.x - transform.position.x >= 0 && canMove)
+        {
+            playerDirection = "right";
+        }
+        if (playerDirection == "left")
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if(playerDirection == "right")
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 
 
@@ -205,12 +221,13 @@ public class PlayerMovement : MonoBehaviour
             invulnCoroutine = StartCoroutine(PlayerInvulnerable(2.0f));
             if (health > 0)
             {
-                if (attackTransform.position.x > transform.position.x)
+                damageForce = new Vector2(-6, 5);
+                if (attackTransform.position.x >= transform.position.x)
                 {
                     playerDirection = "right";
                     damageForce = new Vector2(-6, 5);
                 }
-                else
+                else if (attackTransform.position.x < transform.position.x)
                 {
                     playerDirection = "left";
                     damageForce = new Vector2(6, 5);
@@ -364,8 +381,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(canSlice == true)
         {
-            RaycastHit2D swordRay = Physics2D.Raycast(transform.position, swordPointer.transform.rotation * Vector2.right, 1.75f /* sword length */, enemyLayer);
-            Debug.DrawRay(transform.position, swordPointer.transform.rotation * Vector2.right * 1.75f, Color.blue, 1.75f);
+            RaycastHit2D swordRay = Physics2D.Raycast(transform.position, swordPointer.transform.rotation * Vector2.right, 1.5f /* sword length */, enemyLayer);
+            Debug.DrawRay(transform.position, swordPointer.transform.rotation * Vector2.right * 1.5f, Color.blue, 1.5f);
             if (swordPointer.mousePos.x - transform.position.x >= 0)
             {
                 sliceTransform.localScale = new Vector3(8.9f, 8.9f, 8.9f);
