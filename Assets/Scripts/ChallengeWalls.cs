@@ -32,11 +32,11 @@ public class ChallengeWalls : MonoBehaviour
 
     IEnumerator MoveDown()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         Vector3 startPosition = transform.position;
         Vector3 destination = new Vector3(transform.position.x, transform.position.y - transform.localScale.y, transform.position.z);
         float t = 0.0f;
-        while(t < 1)
+        while(t < 2)
         {
             t += Time.deltaTime / 3;
             transform.position = Vector3.Lerp(startPosition, destination, t);
