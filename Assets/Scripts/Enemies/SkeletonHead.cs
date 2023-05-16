@@ -7,6 +7,7 @@ public class SkeletonHead : MonoBehaviour
     PlayerMovement playerMovement;
     [SerializeField] LayerMask groundLayer;
     Rigidbody2D skullRB;
+    [SerializeField] GameObject critParticle;
 
     private void Start()
     {
@@ -27,7 +28,7 @@ public class SkeletonHead : MonoBehaviour
         {
             playerMovement.ResetDash();
         }
-
+        Instantiate(critParticle, transform.position, transform.rotation);
         Destroy(gameObject);
     }
     void DetectGround()

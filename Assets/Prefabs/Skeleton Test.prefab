@@ -139,7 +139,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6973298d617295d49b035de2575684ca, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -199,8 +199,12 @@ MonoBehaviour:
     m_Bits: 256
   playerMovement: {fileID: 0}
   skull: {fileID: 9083428955779437713, guid: 9c6f2aca30f1cf64c8f42401f998a391, type: 3}
+  projectileEnemy: 0
+  projectilePrefab: {fileID: 0}
+  deathParticle: {fileID: 2723034509565773020, guid: 900c4d09abf71e0439b35841dd0bcb8d, type: 3}
   speed: 3
   health: 15
+  justShot: 0
 --- !u!114 &2399263406843564666
 MonoBehaviour:
   m_ObjectHideFlags: 0

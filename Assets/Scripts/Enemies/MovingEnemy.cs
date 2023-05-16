@@ -11,7 +11,7 @@ public class MovingEnemy : EnemyAI
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] GameObject skull;
     [SerializeField] bool projectileEnemy;
-    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private GameObject projectilePrefab, deathParticle;
     Animator enemyAnimator;
     Rigidbody2D rb2d;
     public float speed, health;
@@ -281,7 +281,7 @@ public class MovingEnemy : EnemyAI
 
 
             Instantiate(skull, new Vector3(transform.position.x, transform.position.y + 0.2f, transform.position.z), Quaternion.identity);
-
+            Instantiate(deathParticle, transform.position, transform.rotation);
             Destroy(gameObject);
         }
 

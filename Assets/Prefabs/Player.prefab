@@ -616,6 +616,8 @@ MonoBehaviour:
   isStickyWallStuck: 0
   isWeightedDown: 0
   sliceAnimator: {fileID: 3299435162678334785}
+  hitParticle: {fileID: 1699287570215545354, guid: 0bc8a2f62ecae194ba3d70e661f2bede, type: 3}
+  dashParticle: {fileID: 1699287570215545354, guid: f025ee08feec01242854a7956859e0e1, type: 3}
   health: 100
 --- !u!120 &3299435164292576166
 LineRenderer:
@@ -637,7 +639,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6ad0a95a7e1db1d4c9ebe510e2bf76c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -663,13 +665,13 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.05
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.95833397
+        value: 0.5544872
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -677,7 +679,16 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.99270564
+        time: 0.71416235
+        value: 0.3039772
+        inSlope: -0.77837884
+        outSlope: -0.77837884
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
         value: 0
         inSlope: 0
         outSlope: 0

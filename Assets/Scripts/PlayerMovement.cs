@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public Coroutine invulnCoroutine;
     public Coroutine dashLineCoroutine = null;
     [SerializeField] Animator sliceAnimator;
+    [SerializeField] GameObject hitParticle, dashParticle;
     LineRenderer lineRenderer;
     public float health;
 
@@ -293,6 +294,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (enemy.collider.gameObject.GetComponent<MovingEnemy>() != null)
                 {
+                    Instantiate(dashParticle, enemy.transform);
                     enemy.collider.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5, 6, 2.0f);
                 }
 
@@ -303,6 +305,7 @@ public class PlayerMovement : MonoBehaviour
 
                 if (enemy.collider.gameObject.GetComponent<FlyingEnemy>() != null)
                 {
+                    Instantiate(dashParticle, enemy.transform);
                     enemy.collider.gameObject.GetComponent<FlyingEnemy>().TakeDamage(transform, 5);
                 }
             }
@@ -399,11 +402,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (swordRay.collider.gameObject.GetComponent<MovingEnemy>() != null)
                 {
+                    Instantiate(hitParticle, swordRay.collider.transform);
                     swordRay.collider.gameObject.GetComponent<MovingEnemy>().TakeDamage(transform, 5, 4, 1.5f);
                 }
 
                 if (swordRay.collider.gameObject.GetComponent<FlyingEnemy>() != null)
                 {
+                    Instantiate(hitParticle, swordRay.collider.transform);
                     swordRay.collider.gameObject.GetComponent<FlyingEnemy>().TakeDamage(transform, 5);
                 }
             }

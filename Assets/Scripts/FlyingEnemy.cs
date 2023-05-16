@@ -6,6 +6,7 @@ public class FlyingEnemy : EnemyAI
 {
     [SerializeField] float health, speed, turnSpeed;
     [SerializeField] LayerMask playerLayer;
+    [SerializeField] GameObject deathParticle;
     bool idle, canMove;
     Rigidbody2D rb2d;
 
@@ -77,7 +78,7 @@ public class FlyingEnemy : EnemyAI
             {
                 GameController.staticPlayer.ResetDash();
             }
-
+            Instantiate(deathParticle, transform.position, transform.rotation);
             Destroy(gameObject);
         }
 

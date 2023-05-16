@@ -338,6 +338,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
+  deathParticle: {fileID: 2723034509565773020, guid: 900c4d09abf71e0439b35841dd0bcb8d, type: 3}
 --- !u!50 &9100211392146170287
 Rigidbody2D:
   serializedVersion: 4
