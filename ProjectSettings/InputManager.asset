@@ -54,6 +54,22 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
+    m_Name: Cont1
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: left ctrl
+    altNegativeButton: 
+    altPositiveButton: mouse 0
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 10
+    joyNum: 0
+  - serializedVersion: 3
     m_Name: Fire2
     descriptiveName: 
     descriptiveNegativeName: 
@@ -70,13 +86,61 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
+    m_Name: Fire2
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: left alt
+    altNegativeButton: 
+    altPositiveButton: mouse 1
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 9
+    joyNum: 0
+  - serializedVersion: 3
     m_Name: Fire3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: left shift
+    positiveButton: e
     altNegativeButton: 
-    altPositiveButton: mouse 2
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Fire3
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: e
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 12
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Jump
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: space
+    altNegativeButton: 
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -98,8 +162,8 @@ InputManager:
     sensitivity: 1000
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
+    type: 2
+    axis: 13
     joyNum: 0
   - serializedVersion: 3
     m_Name: Mouse X
@@ -112,10 +176,26 @@ InputManager:
     gravity: 0
     dead: 0
     sensitivity: 0.1
-    snap: 0
+    snap: 1
     invert: 0
     type: 1
     axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: ControllerX
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 0.1
+    snap: 1
+    invert: 0
+    type: 2
+    axis: 3
     joyNum: 0
   - serializedVersion: 3
     m_Name: Mouse Y
@@ -132,6 +212,22 @@ InputManager:
     invert: 0
     type: 1
     axis: 1
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: ControllerY
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 0.1
+    snap: 1
+    invert: 1
+    type: 2
+    axis: 4
     joyNum: 0
   - serializedVersion: 3
     m_Name: Mouse ScrollWheel
@@ -485,3 +581,4 @@ InputManager:
     type: 2
     axis: 5
     joyNum: 0
+  m_UsePhysicalKeys: 0
