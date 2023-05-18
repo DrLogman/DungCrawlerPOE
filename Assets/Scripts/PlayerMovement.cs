@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
             
         }
         
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetAxis("Fire1") != 0)
         {
             SwordAttack();
         }
@@ -75,11 +75,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckPlayerDirection()
     {
-        if (swordPointer.mousePos.x - transform.position.x < 0 && canMove)
+        if (((swordPointer.mousePos.x - transform.position.x < 0 && !swordPointer.connected) || (swordPointer.connected && Input.GetAxis("ControllerX") < 0)) && canMove)
         {
             playerDirection = "left";
         }
-        if (swordPointer.mousePos.x - transform.position.x >= 0 && canMove)
+        if (((swordPointer.mousePos.x - transform.position.x >= 0 && !swordPointer.connected) || (swordPointer.connected && Input.GetAxis("ControllerX") >= 0)) && canMove)
         {
             playerDirection = "right";
         }
@@ -109,7 +109,6 @@ public class PlayerMovement : MonoBehaviour
     }
     public void WallStickyRun()
     {
-
         if (isStickyWallStuck == true)
         {
             Debug.Log("Move");
@@ -121,8 +120,6 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRB.gravityScale = 1.0f;
         }
-        
-
     }
 
     private void Jump()
@@ -133,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
             * If the player is not grounded, check for wall jump and then double jump and remove whichever is used
             * Jumps used in order Ground -> Wall -> Double
             */
-            if (Input.GetKeyDown(KeyCode.Space) && (isGrounded == true || doubleJump == true || (wallJump == true && wallJumpReset == true)))
+            if (Input.GetButtonDown("Jump") && (isGrounded == true || doubleJump == true || (wallJump == true && wallJumpReset == true)))
             {
                 playerRB.velocity = new Vector2(playerRB.velocity.x, jumpForce);
 
@@ -155,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
              * Checks is space is let go, if so slows down jump velocity to give affect of pressing space longer to jump longer
              * Thanks Trey :^)
              */
-            if (Input.GetKeyUp(KeyCode.Space) && playerRB.velocity.y > 0f)
+            if (Input.GetButtonUp("Jump") && playerRB.velocity.y > 0f)
             {
                 playerRB.velocity = new Vector2(playerRB.velocity.x, playerRB.velocity.y * 0.5f);
             }
@@ -258,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash()
     {
-        if(Input.GetMouseButtonDown(1) && dashActive == true)
+        if(Input.GetButtonDown("Fire2") && dashActive == true)
         {
             dashActive = false;
 
