@@ -191,7 +191,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   chaseMinDistance: 0.6
-  strength: 10
+  strength: 7
   fallCollider: {fileID: 1741577239294035699}
   touchCollider: {fileID: 1741577240656616397}
   playerLayer:
@@ -202,7 +202,7 @@ MonoBehaviour:
   projectileEnemy: 0
   projectilePrefab: {fileID: 0}
   deathParticle: {fileID: 2723034509565773020, guid: 900c4d09abf71e0439b35841dd0bcb8d, type: 3}
-  speed: 3
+  speed: 2.4
   health: 15
   justShot: 0
 --- !u!114 &2399263406843564666

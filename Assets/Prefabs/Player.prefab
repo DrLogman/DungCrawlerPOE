@@ -26,9 +26,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3299435162678334791}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.06, y: 0, z: 0}
-  m_LocalScale: {x: 8.9, y: 8.9, z: 8.9}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.2, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3299435162853807033}
   m_RootOrder: 0
@@ -133,8 +133,8 @@ Transform:
   m_GameObject: {fileID: 3299435162853807032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3299435162678334784}
   m_Father: {fileID: 3299435164292576165}
@@ -180,8 +180,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: cbca27d3fa53be64b9f1b7ef7917339c, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: e830500753afb5248a9f1f7b25c58b7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -206,6 +206,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angle: 0
   mousePos: {x: 0, y: 0, z: 0}
+  connected: 0
+  sprite: {fileID: 0}
 --- !u!61 &3299435162853807012
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -223,7 +225,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.2, y: 4.32}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 5.2, y: 4.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -594,7 +596,7 @@ MonoBehaviour:
   gravityDownScale: 0
   dashStat: 5
   dashCooldown: 3
-  sliceCooldown: 0.4
+  sliceCooldown: 0.3
   swordPointer: {fileID: 3299435162853807034}
   dashLayer:
     serializedVersion: 2

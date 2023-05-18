@@ -211,7 +211,7 @@ public class MovingEnemy : EnemyAI
     {
         if (distanceToPlayer < 1 && playerMovement.invulnerable == false)
         {
-            Collider2D touchCollision = Physics2D.OverlapBox(touchCollider.position, new Vector2(0.5f, 1), 0, playerLayer);
+            Collider2D touchCollision = Physics2D.OverlapBox(touchCollider.position, new Vector2(0.2f, 1), 0, playerLayer);
 
             if(touchCollision != null && touchCollision.tag == "Player")
             {

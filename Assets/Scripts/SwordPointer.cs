@@ -7,14 +7,17 @@ public class SwordPointer : MonoBehaviour
     public float angle;
     public Vector3 mousePos;
     public bool connected = false;
+    [SerializeField] SpriteRenderer sprite;
     // Update is called once per frame
     void Update ()
     {
         if(!connected)
         {
+            sprite.enabled = false;
             MouseUpdate();
         } else
         {
+            sprite.enabled = true;
             ControllerUpdate();
         }
         
@@ -67,6 +70,7 @@ public class SwordPointer : MonoBehaviour
     void Awake()
     {
         StartCoroutine(CheckForControllers());
+        sprite = GetComponent<SpriteRenderer>();
     }
 
 
