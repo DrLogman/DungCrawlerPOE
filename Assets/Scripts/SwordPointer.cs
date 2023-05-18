@@ -4,22 +4,10 @@ using UnityEngine;
 
 public class SwordPointer : MonoBehaviour
 {
-    private bool connected = false;
     public float angle;
     public Vector3 mousePos;
     // Update is called once per frame
     void Update ()
-    {
-        if(!connected)
-        {
-            MouseUpdate();
-        } else if(connected)
-        {
-            ControllerUpdate();
-        }
-    }
-
-    void MouseUpdate()
     {
         mousePos = Input.mousePosition;
         mousePos.z = 5.23f;
@@ -32,40 +20,5 @@ public class SwordPointer : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 
-    IEnumerator CheckForControllers()
-    {
-        while (true)
-        {
-            var controllers = Input.GetJoystickNames();
 
-            if (!connected && controllers.Length > 0)
-            {
-                connected = true;
-                Debug.Log("Connected");
-
-            }
-            else if (connected && controllers.Length == 0)
-            {
-                connected = false;
-                Debug.Log("Disconnected");
-            }
-
-            yield return new WaitForSeconds(1f);
-        }
-    }
-
-    void Awake()
-    {
-        StartCoroutine(CheckForControllers());
-    }
-
-
-    void ControllerUpdate()
-    {
-        float ControllerX = Input.GetAxis("ControllerX");
-        float ControllerY = Input.GetAxis("ControllerY");
-
-        float angle = Mathf.Atan2(ControllerY, ControllerX) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-    }
 }

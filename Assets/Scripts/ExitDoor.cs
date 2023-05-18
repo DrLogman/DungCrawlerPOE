@@ -12,7 +12,7 @@ public class ExitDoor : MonoBehaviour
         if(playerMovement.canExit == true)
         {
             buttonSprite.enabled = true;
-            if(Input.GetButtonDown("Fire3"))
+            if(Input.GetKeyDown(KeyCode.E))
             {
                 GameController.savedPlayerHealth = playerMovement.health;
                 GameController.LoadNextScene();

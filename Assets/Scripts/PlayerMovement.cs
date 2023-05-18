@@ -50,10 +50,10 @@ public class PlayerMovement : MonoBehaviour
             PlayerMove();
             Jump();
             Dash();
-
+            
         }
-
-        if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.JoystickButton11))
+        
+        if(Input.GetMouseButtonDown(0))
         {
             SwordAttack();
         }
@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
             * If the player is not grounded, check for wall jump and then double jump and remove whichever is used
             * Jumps used in order Ground -> Wall -> Double
             */
-            if (Input.GetButtonDown("Jump") && (isGrounded == true || doubleJump == true || (wallJump == true && wallJumpReset == true)))
+            if (Input.GetKeyDown(KeyCode.Space) && (isGrounded == true || doubleJump == true || (wallJump == true && wallJumpReset == true)))
             {
                 playerRB.velocity = new Vector2(playerRB.velocity.x, jumpForce);
 
@@ -258,7 +258,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash()
     {
-        if(Input.GetButtonDown("Fire2") && dashActive == true)
+        if(Input.GetMouseButtonDown(1) && dashActive == true)
         {
             dashActive = false;
 
