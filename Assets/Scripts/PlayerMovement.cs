@@ -25,9 +25,11 @@ public class PlayerMovement : MonoBehaviour
     LineRenderer lineRenderer;
     public float health;
     [SerializeField] AudioSource jumpSound, landSound;
+    Animator playerAnimator;
 
     private void Start()
     {
+        playerAnimator = GetComponent<Animator>();
         GameController.staticPlayer = this;
         canSlice = true;
         stopDashCooldown = false;
@@ -66,7 +68,13 @@ public class PlayerMovement : MonoBehaviour
             StopCoroutine(dashLineCoroutine);
             stopDashCooldown = false;
         }
-
+        if(playerRB.velocity.y > 0)
+        {
+            playerAnimator.SetBool("Falling", false);
+        } else
+        {
+            playerAnimator.SetBool("Falling", true);
+        }
     }
 
     public void UpdateHealthBar()
@@ -142,15 +150,18 @@ public class PlayerMovement : MonoBehaviour
                     {
                         wallJump = false;
                         wallJumpReset = false;
+                        playerAnimator.SetTrigger("DoubleJump");
                     }
                     else
                     {
                         doubleJump = false;
+                        playerAnimator.SetTrigger("DoubleJump");
                     }
 
                 } else
                 {
                     jumpSound.Play();
+                    playerAnimator.SetTrigger("Jump");
                 }
             }
             /*
