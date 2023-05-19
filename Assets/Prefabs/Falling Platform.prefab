@@ -108,7 +108,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 5
 --- !u!61 &3046477383552142278
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148,12 +148,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallingDelay: 0.5
-  destroyDelay: 1.6
-  respawnTime: 0
-  isDestroyed: 0
+  playerDelay: 0.5
+  respawnDelay: 2
+  destroyDelay: 0
+  isWithPlayer: 0
+  isOnGround: 0
+  isWithSecPlayer: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
   platformRefPos: {fileID: 4069879648737128273}
   platform: {fileID: 3046477383552142328}
 --- !u!1 &9209717450243270429

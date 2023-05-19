@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class Bombs : MonoBehaviour
 {
-    [SerializeField] float damage, horizontalKB, verticalKB, explosionMultiplier, speed, respawnTime, splashRange;
+    [SerializeField] float damage, horizontalKB, verticalKB, explosionMultiplier, speed, respawnTime, splashRange, damageRadius, initialRadius;
     [SerializeField] SpriteRenderer rend;
     [SerializeField] bool isDestroyed, isRespawnable, isNotRespawnable, isProjectile;
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] CircleCollider2D circleCollider;
     void Start()
     {
         rend = this.gameObject.GetComponent<SpriteRenderer>();
+        circleCollider = GetComponent<CircleCollider2D>();
+        initialRadius = circleCollider.radius;
         rend.enabled = true;
     }
     private void Update()
@@ -82,6 +85,7 @@ public class Bombs : MonoBehaviour
         isDestroyed = false;
         yield return new WaitForSeconds(respawnTime);
         GetComponent<CircleCollider2D>().enabled = true;
+        circleCollider.radius = initialRadius;
         rend.enabled = true;
     }
 
@@ -92,7 +96,6 @@ public class Bombs : MonoBehaviour
         if (col != null)
         {
             SplashDamageObjects();
-            
             Destroy(gameObject);
         }
     }
@@ -104,9 +107,11 @@ public class Bombs : MonoBehaviour
     {
         if (splashRange > 0)
         {
+            circleCollider.radius = damageRadius;
             var hitColliders = Physics2D.OverlapCircleAll(transform.position, splashRange);
             foreach (var hitCollider in hitColliders)
             {
+               
                 var enemy = hitCollider.GetComponent<MovingEnemy>();
                 var player = hitCollider.GetComponent<PlayerMovement>();
                 var flyingEnemy = hitCollider.GetComponent<FlyingEnemy>();

@@ -101,7 +101,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 0.5
 --- !u!114 &7895634741330868836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +121,7 @@ MonoBehaviour:
   speed: 4
   respawnTime: 2
   splashRange: 1.5
+  damageRadius: 0
   rend: {fileID: 4203979468046329462}
   isDestroyed: 0
   isRespawnable: 0
@@ -128,4 +129,5 @@ MonoBehaviour:
   isProjectile: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
+  circleCollider: {fileID: 6083671411070279291}
