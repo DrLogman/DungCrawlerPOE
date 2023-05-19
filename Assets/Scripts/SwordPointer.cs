@@ -5,8 +5,10 @@ using UnityEngine;
 public class SwordPointer : MonoBehaviour
 {
     public float angle;
+    float ControllerX, ControllerY;
     public Vector3 mousePos;
     public bool connected = false;
+    static public bool staticConnected;
     [SerializeField] SpriteRenderer sprite;
     // Update is called once per frame
     void Update ()
@@ -20,7 +22,7 @@ public class SwordPointer : MonoBehaviour
             sprite.enabled = true;
             ControllerUpdate();
         }
-        
+        staticConnected = connected;
     }
 
     void MouseUpdate()
@@ -37,9 +39,15 @@ public class SwordPointer : MonoBehaviour
     }
 
     void ControllerUpdate()
-    {
-        float ControllerX = Input.GetAxis("ControllerX");
-        float ControllerY = Input.GetAxis("ControllerY");
+    { 
+        if(Mathf.Abs(Input.GetAxis("ControllerX")) > 0.01)
+        {
+            ControllerX = Input.GetAxis("ControllerX");
+        }
+        if (Mathf.Abs(Input.GetAxis("ControllerY")) > 0.01)
+        {
+            ControllerY = Input.GetAxis("ControllerY");
+        }
 
         float angle = Mathf.Atan2(ControllerY, ControllerX) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
@@ -51,7 +59,7 @@ public class SwordPointer : MonoBehaviour
         {
             var controllers = Input.GetJoystickNames();
 
-            if (!connected && controllers.Length > 0 && controllers[0].Length > 1)
+            if (!connected && controllers.Length > 0)
             {
                 connected = true;
                 Debug.Log("Connected");

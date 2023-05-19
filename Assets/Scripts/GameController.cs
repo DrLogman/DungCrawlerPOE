@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public static string[] sceneNames = { "Scene1", "Scene2", "Scene3", "Scene4" };
+    public static string[] sceneNames = {"Scene1"};
     public static float savedPlayerHealth = 100;
     static List<string> scenesChosen = new List<string>();
     static int currentSceneNumber = 0;
@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
             scenesChosen.Clear();
         }
         scenesChosen.Add("IntroLevel");
-        while(scenesChosen.Count < 4)
+        while(scenesChosen.Count < sceneNames.Length + 1)
         {
             int rand = (int)(Random.Range(0, sceneNames.Length));
             if (!scenesChosen.Contains(sceneNames[rand]))

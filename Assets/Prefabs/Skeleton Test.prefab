@@ -202,7 +202,7 @@ MonoBehaviour:
   projectileEnemy: 0
   projectilePrefab: {fileID: 0}
   deathParticle: {fileID: 2723034509565773020, guid: 900c4d09abf71e0439b35841dd0bcb8d, type: 3}
-  speed: 2.4
+  speed: 2.8
   health: 15
   justShot: 0
 --- !u!114 &2399263406843564666

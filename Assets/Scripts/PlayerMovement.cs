@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject hitParticle, dashParticle;
     LineRenderer lineRenderer;
     public float health;
+    [SerializeField] AudioSource jumpSound, landSound;
 
     private void Start()
     {
@@ -133,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetButtonDown("Jump") && (isGrounded == true || doubleJump == true || (wallJump == true && wallJumpReset == true)))
             {
                 playerRB.velocity = new Vector2(playerRB.velocity.x, jumpForce);
+                
 
                 if (isGrounded == false)
                 {
@@ -146,6 +148,9 @@ public class PlayerMovement : MonoBehaviour
                         doubleJump = false;
                     }
 
+                } else
+                {
+                    jumpSound.Play();
                 }
             }
             /*
@@ -164,6 +169,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(groundCheck.position, 0.15f, dashLayer) && canMove)
         {
+            if(isGrounded == false)
+            {
+                landSound.Play();
+            }
             isGrounded = true;
             doubleJump = true;
             wallJumpReset = true;
@@ -383,7 +392,7 @@ public class PlayerMovement : MonoBehaviour
         {
             RaycastHit2D swordRay = Physics2D.Raycast(transform.position, swordPointer.transform.rotation * Vector2.right, 1.3f /* sword length */, enemyLayer);
             Debug.DrawRay(transform.position, swordPointer.transform.rotation * Vector2.right * 1.3f, Color.blue, 2f);
-            if (swordPointer.mousePos.x - transform.position.x >= 0)
+            if (playerDirection == "right")
             {
                 sliceTransform.localScale = new Vector3(1.78f, 1.78f, 1.78f);
             }
