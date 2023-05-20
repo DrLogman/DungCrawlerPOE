@@ -7,9 +7,10 @@ public class GameController : MonoBehaviour
 {
     public static string[] sceneNames = {"Scene1"};
     public static float savedPlayerHealth = 100;
-    static List<string> scenesChosen = new List<string>();
+    public static List<string> scenesChosen = new List<string>();
     static int currentSceneNumber = 0;
     public static PlayerMovement staticPlayer;
+    public static bool created;
 
     public static void RandomSceneList()
     {
@@ -27,6 +28,8 @@ public class GameController : MonoBehaviour
             }
         }
         currentSceneNumber = 0;
+
+        created = true;
     }
 
     public static void LoadNextScene()

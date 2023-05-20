@@ -8,7 +8,7 @@ public class SwordPointer : MonoBehaviour
     float ControllerX, ControllerY;
     public Vector3 mousePos;
     public bool connected = false;
-    static public bool staticConnected;
+    static public bool staticConnected = false;
     [SerializeField] SpriteRenderer sprite;
     // Update is called once per frame
     void Update ()
@@ -59,13 +59,13 @@ public class SwordPointer : MonoBehaviour
         {
             var controllers = Input.GetJoystickNames();
 
-            if (!connected && controllers.Length > 0)
+            if (controllers.Length > 0)
             {
                 connected = true;
                 Debug.Log("Connected");
 
             }
-            else if (connected && controllers.Length == 0)
+            else
             {
                 connected = false;
                 Debug.Log("Disconnected");
@@ -77,8 +77,8 @@ public class SwordPointer : MonoBehaviour
 
     void Awake()
     {
-        StartCoroutine(CheckForControllers());
         sprite = GetComponent<SpriteRenderer>();
+        StartCoroutine(CheckForControllers());
     }
 
 

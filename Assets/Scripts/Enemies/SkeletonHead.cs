@@ -29,6 +29,7 @@ public class SkeletonHead : MonoBehaviour
             playerMovement.ResetDash();
         }
         Instantiate(critParticle, transform.position, transform.rotation);
+        playerMovement.critSound.Play();
         Destroy(gameObject);
     }
     void DetectGround()

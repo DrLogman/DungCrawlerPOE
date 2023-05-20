@@ -98,7 +98,7 @@ PrefabInstance:
     - target: {fileID: 1741577239764560203, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: projectilePrefab
       value: 
-      objectReference: {fileID: 1776306565102087116, guid: ea035ba853aa443c2bcf77ad4ba3f2c6, type: 3}
+      objectReference: {fileID: 1776306565102087116, guid: b8336f67ba2fb114cb6421ca3024e604, type: 3}
     - target: {fileID: 2399263406843564666, guid: 7e9f261ece48bdf47ba3b44030cdb641, type: 3}
       propertyPath: m_Mesh
       value: 

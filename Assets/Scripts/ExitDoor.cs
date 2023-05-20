@@ -9,17 +9,22 @@ public class ExitDoor : MonoBehaviour
 
     private void Update()
     {
-        if(playerMovement.canExit == true)
+        if (GameController.created)
         {
-            buttonSprite.enabled = true;
-            if(Input.GetButtonDown("Fire3"))
+            if (playerMovement.canExit == true)
             {
-                GameController.savedPlayerHealth = playerMovement.health;
-                GameController.LoadNextScene();
+                buttonSprite.enabled = true;
+                if (Input.GetButtonDown("Fire3"))
+                {
+                    GameController.savedPlayerHealth = playerMovement.health;
+                    GameController.LoadNextScene();
+                }
             }
-        } else
-        {
-            buttonSprite.enabled = false;
+            else
+            {
+                buttonSprite.enabled = false;
+            }
         }
+        
     }
 }

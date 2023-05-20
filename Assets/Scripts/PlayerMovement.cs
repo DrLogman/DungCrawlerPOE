@@ -24,7 +24,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject hitParticle, dashParticle;
     LineRenderer lineRenderer;
     public float health;
-    [SerializeField] AudioSource jumpSound, landSound;
+    [SerializeField] AudioSource jumpSound, doubleJumpSound, wallJumpSound, landSound;
+    public AudioSource critSound;
     Animator playerAnimator;
 
     private void Start()
@@ -53,9 +54,9 @@ public class PlayerMovement : MonoBehaviour
             PlayerMove();
             Jump();
             Dash();
-            
         }
-        
+        CheckAnimations();
+
         if(Input.GetAxis("Fire1") != 0)
         {
             SwordAttack();
@@ -68,12 +69,51 @@ public class PlayerMovement : MonoBehaviour
             StopCoroutine(dashLineCoroutine);
             stopDashCooldown = false;
         }
-        if(playerRB.velocity.y > 0)
+    }
+
+    void CheckAnimations()
+    {
+        if(canMove)
         {
-            playerAnimator.SetBool("Falling", false);
-        } else
-        {
-            playerAnimator.SetBool("Falling", true);
+            if (playerRB.velocity.y > 0.1)
+            {
+                playerAnimator.SetBool("Falling", false);
+                playerAnimator.SetBool("Jumping", true);
+            }
+            else if (playerRB.velocity.y < -0.1)
+            {
+                playerAnimator.SetBool("Falling", true);
+                playerAnimator.SetBool("Jumping", false);
+            }
+            else
+            {
+                playerAnimator.SetBool("Falling", false);
+                playerAnimator.SetBool("Jumping", false);
+            }
+
+            if (Input.GetAxisRaw("Horizontal") > 0)
+            {
+                playerAnimator.SetBool("Moving", true);
+                playerAnimator.SetBool("IsLeft", false);
+            }
+            else if (Input.GetAxisRaw("Horizontal") < 0)
+            {
+                playerAnimator.SetBool("Moving", true);
+                playerAnimator.SetBool("IsLeft", true);
+            }
+            else if(Input.GetAxisRaw("Horizontal") == 0)
+            {
+                playerAnimator.SetBool("Moving", false);
+            }
+
+            if (playerDirection == "left")
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            if (playerDirection == "right")
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
     }
 
@@ -84,21 +124,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckPlayerDirection()
     {
-        if (((swordPointer.mousePos.x - transform.position.x < 0 && !swordPointer.connected) || (swordPointer.connected && Input.GetAxis("ControllerX") < 0)) && canMove)
-        {
-            playerDirection = "left";
-        }
-        if (((swordPointer.mousePos.x - transform.position.x >= 0 && !swordPointer.connected) || (swordPointer.connected && Input.GetAxis("ControllerX") >= 0)) && canMove)
+        if (playerRB.velocity.x > 0.1)
         {
             playerDirection = "right";
         }
-        if (playerDirection == "left")
+        if (playerRB.velocity.x < -0.1)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
-        }
-        else if(playerDirection == "right")
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
+            playerDirection = "left";
         }
     }
 
@@ -133,7 +165,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        
             /*
             * Checks if player is grounded, if double jump is active, or if the player is on a wall and the wall jump reset is true
             * If the player is not grounded, check for wall jump and then double jump and remove whichever is used
@@ -151,18 +182,20 @@ public class PlayerMovement : MonoBehaviour
                         wallJump = false;
                         wallJumpReset = false;
                         playerAnimator.SetTrigger("DoubleJump");
+                        wallJumpSound.Play();
                     }
                     else
                     {
                         doubleJump = false;
                         playerAnimator.SetTrigger("DoubleJump");
+                        doubleJumpSound.Play();
                     }
 
-                } else
-                {
+                    } else
+                    {
                     jumpSound.Play();
                     playerAnimator.SetTrigger("Jump");
-                }
+                    }
             }
             /*
              * Checks is space is let go, if so slows down jump velocity to give affect of pressing space longer to jump longer
@@ -205,6 +238,13 @@ public class PlayerMovement : MonoBehaviour
             }
 
             lastWallSide = "left";
+            
+            if(playerRB.velocity.y < 0)
+            {
+                playerAnimator.SetBool("WallSlide", true);
+            }
+            
+            GetComponent<SpriteRenderer>().flipX = false;
         }
         else if(rightWall != null)
         {
@@ -216,10 +256,18 @@ public class PlayerMovement : MonoBehaviour
             }
 
             lastWallSide = "right";
+
+            if (playerRB.velocity.y < 0)
+            {
+                playerAnimator.SetBool("WallSlide", true);
+            }
+
+            GetComponent<SpriteRenderer>().flipX = true;
         }
         else
         {
             wallJump = false;
+            playerAnimator.SetBool("WallSlide", false);
         }
 
 

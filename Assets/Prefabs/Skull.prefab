@@ -262,3 +262,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   critParticle: {fileID: 3869863374004312277, guid: aa38a2a644455254f8652446c14b331b, type: 3}
+  critSound: {fileID: 0}
