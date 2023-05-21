@@ -7,7 +7,7 @@ public class MovingPlatform : MonoBehaviour
     //schmovin'
     [SerializeField] float platformSpeed;
     [SerializeField] Transform[] points;
-    private int i;
+    [SerializeField] int i;
 
     void Start()
     {
@@ -17,6 +17,7 @@ public class MovingPlatform : MonoBehaviour
 
     void Update()
     {
+
         if (Vector2.Distance(transform.position, points[i].position) < 0.02f)
         {
             i++;

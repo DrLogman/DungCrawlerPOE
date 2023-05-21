@@ -154,6 +154,7 @@ MonoBehaviour:
   isWithPlayer: 0
   isOnGround: 0
   isWithSecPlayer: 0
+  isDamagingPlayer: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
