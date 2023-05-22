@@ -110,6 +110,7 @@ public class FallingPlatform : MonoBehaviour
 
             Vector3 creationPoint = new Vector3(platformRefPos.position.x, platformRefPos.position.y, platformRefPos.position.z);
             rb2d.bodyType = RigidbodyType2D.Static;
+            rb2d.constraints = RigidbodyConstraints2D.FreezePositionX;
             Instantiate(platform, creationPoint, Quaternion.identity);
         
     }

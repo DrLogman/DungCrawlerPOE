@@ -35,6 +35,7 @@ public class Bombs : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<PlayerMovement>() != null)
             {
+                Debug.Log("PLayer");
                 SplashDamageObjects();
                 if(isNotRespawnable == true)
                 {
@@ -49,6 +50,7 @@ public class Bombs : MonoBehaviour
             }
             if (collision.gameObject.GetComponent<MovingEnemy>() != null)
             {
+                Debug.Log("Enemy");
                 SplashDamageObjects();
                 if (isNotRespawnable == true)
                 {
@@ -64,6 +66,7 @@ public class Bombs : MonoBehaviour
             }
             if (collision.gameObject.GetComponent<FlyingEnemy>() != null)
             {
+                Debug.Log("EnemyTwo");
                 SplashDamageObjects();
                 if (isNotRespawnable == true)
                 {
@@ -95,6 +98,7 @@ public class Bombs : MonoBehaviour
 
         if (col != null)
         {
+            Debug.Log("Nothing");
             SplashDamageObjects();
             Destroy(gameObject);
         }
