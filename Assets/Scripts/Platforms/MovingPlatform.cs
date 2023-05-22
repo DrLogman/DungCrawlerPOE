@@ -42,5 +42,17 @@ public class MovingPlatform : MonoBehaviour
         {
             startMoving = true;
         }
+        if(collision.gameObject.GetComponent<PlayerMovement>() != null)
+        {
+            collision.transform.SetParent(transform);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<PlayerMovement>() != null)
+        {
+            collision.transform.SetParent(null);
+        }
     }
 }
