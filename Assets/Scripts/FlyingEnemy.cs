@@ -7,11 +7,13 @@ public class FlyingEnemy : EnemyAI
     [SerializeField] float health, speed, turnSpeed;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] GameObject deathParticle;
+    private DamageFlash damageFlash;
     bool idle, canMove;
     Rigidbody2D rb2d;
 
     private void Start()
     {
+        damageFlash = GetComponent<DamageFlash>();
         rb2d = GetComponent<Rigidbody2D>();
         canMove = true;
     }
@@ -71,6 +73,7 @@ public class FlyingEnemy : EnemyAI
             damageForce = (transform.position - GameController.staticPlayer.transform.position);
 
             StartCoroutine(EnemyKnockback(damageForce * 2f, 4));
+            damageFlash.CallDamageFlash();
         }
         else if (health <= 0)
         {

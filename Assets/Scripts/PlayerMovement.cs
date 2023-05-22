@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove, isOnWall, isGrounded, doubleJump, wallJump, wallJumpReset, canSlice;
     private float lastYPos;
     public string lastWallSide, playerDirection;
-    public bool invulnerable, dashActive, stopDashCooldown, canExit, isStickyWallStuck, isWeightedDown;
+    public bool invulnerable, dashActive, stopDashCooldown, canExit, isStickyWallStuck, isWeightedDown, isDead;
     public Coroutine dashCoroutine = null;
     public Coroutine invulnCoroutine;
     public Coroutine dashLineCoroutine = null;
@@ -27,9 +27,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] AudioSource jumpSound, doubleJumpSound, wallJumpSound, landSound;
     public AudioSource critSound;
     Animator playerAnimator;
+    private DamageFlash damageFlash;
 
     private void Start()
     {
+        isDead = false;
+        damageFlash = GetComponent<DamageFlash>();
         playerAnimator = GetComponent<Animator>();
         GameController.staticPlayer = this;
         canSlice = true;
@@ -43,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         dashActive = true;
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
-        Debug.Log(playerDirection);
+        canExit = false;
     }
     private void Update()
     {
@@ -278,6 +281,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(invulnerable == false)
         {
+            
             Vector2 damageForce;
             health -= damageTaken;
             if(invulnCoroutine != null)
@@ -287,6 +291,7 @@ public class PlayerMovement : MonoBehaviour
             invulnCoroutine = StartCoroutine(PlayerInvulnerable(2.0f));
             if (health > 0)
             {
+                damageFlash.CallPlayerDamageFlash();
                 damageForce = new Vector2(-6, 5);
                 if (attackTransform.position.x >= transform.position.x)
                 {
@@ -302,8 +307,34 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(PlayerKnockback(damageForce, 5));
                 
 
+            } else
+            {
+                isDead = true;
+                damageForce = new Vector2(-3, 2.5f);
+                if (attackTransform.position.x >= transform.position.x)
+                {
+                    playerDirection = "right";
+                    damageForce = new Vector2(-3, 2.5f);
+                }
+                else if (attackTransform.position.x < transform.position.x)
+                {
+                    playerDirection = "left";
+                    damageForce = new Vector2(3, 2.5f);
+                }
+                StartCoroutine(PlayerKnockback(damageForce, 3));
+                damageFlash.CallDamageFlash();
+                StartCoroutine(GameOver());
             }
         }   
+    }
+
+    private IEnumerator GameOver()
+    {
+        canMove = false;
+        canSlice = false;
+        dashActive = false;
+        yield return new WaitForSeconds(1.0f);
+        GameController.GameOver();
     }
 
     IEnumerator PlayerKnockback(Vector2 velocity, int kbScale)
@@ -318,7 +349,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.4f);
-        canMove = true;
+        if(isDead == false)
+        {
+            canMove = true;
+        }
     }
 
     private void Dash()
@@ -449,8 +483,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(canSlice == true)
         {
-            RaycastHit2D swordRay = Physics2D.Raycast(transform.position, swordPointer.transform.rotation * Vector2.right, 1.3f /* sword length */, enemyLayer);
-            Debug.DrawRay(transform.position, swordPointer.transform.rotation * Vector2.right * 1.3f, Color.blue, 2f);
+            RaycastHit2D swordRay = Physics2D.Raycast(transform.position, swordPointer.transform.rotation * Vector2.right, 1.6f /* sword length */, enemyLayer);
+            Debug.DrawRay(transform.position, swordPointer.transform.rotation * Vector2.right * 1.6f, Color.blue, 2f);
             if (playerDirection == "right")
             {
                 sliceTransform.localScale = new Vector3(1.78f, 1.78f, 1.78f);

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8083813693777208312}
   - component: {fileID: 8083813693777208313}
   - component: {fileID: 8083813693777208318}
+  - component: {fileID: 5177138687872911048}
   m_Layer: 6
   m_Name: StickyGround
   m_TagString: Untagged
@@ -125,3 +126,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5177138687872911048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8083813693777208314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1654d699a6db0a14aa78b9f665a61576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashTime: 0.25

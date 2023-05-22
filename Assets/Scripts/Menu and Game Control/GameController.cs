@@ -37,5 +37,10 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene(scenesChosen[currentSceneNumber]);
         currentSceneNumber++;
     }
+
+    public static void GameOver()
+    {
+        SceneManager.LoadScene("DeathScene");
+    }
     
 } 

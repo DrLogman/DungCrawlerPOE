@@ -59,7 +59,7 @@ public class SwordPointer : MonoBehaviour
         {
             var controllers = Input.GetJoystickNames();
 
-            if (controllers.Length > 0)
+            if (controllers.Length > 0 && controllers.Length < 2)
             {
                 connected = true;
                 Debug.Log("Connected");

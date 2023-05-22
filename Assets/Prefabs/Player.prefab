@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 6212639777132073249}
   - component: {fileID: 2775978524955554864}
   - component: {fileID: 5913561503886958955}
+  - component: {fileID: 5883963448975332280}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -505,7 +506,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 716d3161840519b409cc8bd3b991564d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -623,6 +624,7 @@ MonoBehaviour:
   canExit: 0
   isStickyWallStuck: 0
   isWeightedDown: 0
+  isDead: 0
   sliceAnimator: {fileID: 3299435162678334785}
   hitParticle: {fileID: 1699287570215545354, guid: 0bc8a2f62ecae194ba3d70e661f2bede, type: 3}
   dashParticle: {fileID: 1699287570215545354, guid: f025ee08feec01242854a7956859e0e1, type: 3}
@@ -857,13 +859,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6a65a98c5206d8a44830dee3cad6eb7b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.454
+  m_Volume: 0.265
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 194
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -1068,8 +1070,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f491d1e4e66275e4e9ec1286489edc73, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.43
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1249,3 +1251,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5883963448975332280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299435164292576184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1654d699a6db0a14aa78b9f665a61576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1.6078432, g: 0, b: 0, a: 1}
+  flashTime: 0.2

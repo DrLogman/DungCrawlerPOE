@@ -11,6 +11,8 @@ public class FallingPlatform : MonoBehaviour
     [SerializeField] LayerMask enemyLayer, groundLayer;
     [SerializeField] Transform platformRefPos;
     [SerializeField] GameObject platform;
+    [SerializeField] Transform[] particlePoints;
+    [SerializeField] GameObject particle;
     
     Rigidbody2D rb2d;
 
@@ -82,6 +84,10 @@ public class FallingPlatform : MonoBehaviour
     {
         
         platformRefPos.transform.SetParent(null);
+        for(int i = 0; i < particlePoints.Length; i++)
+        {
+            Instantiate(particle, particlePoints[i].position, particlePoints[i].rotation);
+        }
         yield return new WaitForSeconds(fallingDelay);
         isDamagingPlayer = true;
         rb2d.bodyType = RigidbodyType2D.Dynamic;
@@ -91,6 +97,7 @@ public class FallingPlatform : MonoBehaviour
         CheckForGround();
         DestroyOnGround();
 
+        
 
 
 

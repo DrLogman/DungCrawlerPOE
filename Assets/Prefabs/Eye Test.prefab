@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 9100211392146170287}
   - component: {fileID: 9100211392146170280}
   - component: {fileID: 6669480424235952045}
+  - component: {fileID: 5910471321963180760}
   m_Layer: 7
   m_Name: Eye Test
   m_TagString: Untagged
@@ -280,7 +281,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 716d3161840519b409cc8bd3b991564d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -406,3 +407,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5910471321963180760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9100211392146170281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1654d699a6db0a14aa78b9f665a61576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 2, g: 0, b: 0, a: 1}
+  flashTime: 0.25

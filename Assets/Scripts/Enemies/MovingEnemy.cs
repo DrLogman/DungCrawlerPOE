@@ -20,10 +20,11 @@ public class MovingEnemy : EnemyAI
     bool idle, canMove, canShoot;
     Vector3 enemySize;
     SpriteRenderer spriteRenderer;
-
+    private DamageFlash damageFlash;
 
     private void Start()
     {
+        damageFlash = GetComponent<DamageFlash>();
         canShoot = true;
         enemyAnimator = GetComponent<Animator>();
         facingDirection = "left";
@@ -248,7 +249,7 @@ public class MovingEnemy : EnemyAI
         
         justShot = true;
         Instantiate(projectilePrefab, transform.position, Quaternion.AngleAxis((Mathf.Atan2(vectorToPlayer.y, vectorToPlayer.x) * Mathf.Rad2Deg), Vector3.forward));
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         justShot = false;
 
     }
@@ -271,6 +272,7 @@ public class MovingEnemy : EnemyAI
             }
 
             StartCoroutine(EnemyKnockback(damageForce, 5));
+            damageFlash.CallDamageFlash();
         }
         else if (health <= 0)
         {
