@@ -57,13 +57,13 @@ public class SwordPointer : MonoBehaviour
     {
         while (true)
         {
-            var controllers = Input.GetJoystickNames();
+            string[] controllers = Input.GetJoystickNames();
 
-            if (controllers.Length > 0 && controllers.Length < 2)
+            if (controllers.Length > 0 && controllers[0].Length > 1)
             {
-                connected = false;
+                connected = true;
                 Debug.Log("Connected");
-
+                Debug.Log(controllers[0]);
             }
             else
             {

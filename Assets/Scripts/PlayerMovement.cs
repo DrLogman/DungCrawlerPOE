@@ -218,7 +218,7 @@ public class PlayerMovement : MonoBehaviour
              */
             if (Input.GetButtonUp("Jump") && playerRB.velocity.y > 0f)
             {
-                playerRB.velocity = new Vector2(playerRB.velocity.x, playerRB.velocity.y * 0.5f);
+                playerRB.velocity = new Vector2(playerRB.velocity.x, playerRB.velocity.y * 0.7f);
             }
         
     }

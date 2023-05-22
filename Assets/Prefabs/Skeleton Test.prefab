@@ -208,7 +208,6 @@ MonoBehaviour:
   health: 15
   justShot: 0
   damageSound: {fileID: 613727337669893265}
-  deathSound: {fileID: 613727337669893265}
 --- !u!114 &2399263406843564666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +290,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 21281221aa9540e42939f13da9412b1b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.735
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
