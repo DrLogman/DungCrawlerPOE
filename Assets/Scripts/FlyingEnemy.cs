@@ -7,6 +7,7 @@ public class FlyingEnemy : EnemyAI
     [SerializeField] float health, speed, turnSpeed;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] GameObject deathParticle;
+    [SerializeField] AudioSource damageSound;
     private DamageFlash damageFlash;
     bool idle, canMove;
     Rigidbody2D rb2d;
@@ -74,6 +75,7 @@ public class FlyingEnemy : EnemyAI
 
             StartCoroutine(EnemyKnockback(damageForce * 2f, 4));
             damageFlash.CallDamageFlash();
+            damageSound.Play();
         }
         else if (health <= 0)
         {

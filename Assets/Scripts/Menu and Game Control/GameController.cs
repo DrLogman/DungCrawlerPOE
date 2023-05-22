@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public static string[] sceneNames = {"Scene1"};
+    public static string[] sceneNames = {"(Int)SpikesScene"};
     public static float savedPlayerHealth = 100;
     public static List<string> scenesChosen = new List<string>();
     static int currentSceneNumber = 0;

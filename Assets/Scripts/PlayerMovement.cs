@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject hitParticle, dashParticle;
     LineRenderer lineRenderer;
     public float health;
-    [SerializeField] AudioSource jumpSound, doubleJumpSound, wallJumpSound, landSound;
+    [SerializeField] AudioSource jumpSound, doubleJumpSound, wallJumpSound, landSound, swingSound, dashSound;
     public AudioSource critSound;
     Animator playerAnimator;
     private DamageFlash damageFlash;
@@ -60,13 +60,13 @@ public class PlayerMovement : MonoBehaviour
         }
         CheckAnimations();
 
-        if(Input.GetAxis("Fire1") != 0)
+        if (Input.GetAxis("Fire1") != 0)
         {
             SwordAttack();
         }
 
         UpdateHealthBar();
-        if(dashCoroutine != null && dashLineCoroutine != null && stopDashCooldown == true)
+        if (dashCoroutine != null && dashLineCoroutine != null && stopDashCooldown == true)
         {
             StopCoroutine(dashCoroutine);
             StopCoroutine(dashLineCoroutine);
@@ -78,12 +78,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if(canMove)
         {
-            if (playerRB.velocity.y > 0.1)
+            if (playerRB.velocity.y > 0.001)
             {
                 playerAnimator.SetBool("Falling", false);
                 playerAnimator.SetBool("Jumping", true);
             }
-            else if (playerRB.velocity.y < -0.1)
+            else if (playerRB.velocity.y < -0.001)
             {
                 playerAnimator.SetBool("Falling", true);
                 playerAnimator.SetBool("Jumping", false);
@@ -141,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         PlayerCollision();
+        
     }
 
     private void PlayerMove()
@@ -155,14 +156,25 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isStickyWallStuck == true)
         {
-            Debug.Log("Move");
+            
             playerRB.gravityScale = 0.0f;
+            playerAnimator.SetBool("Climbing", true);
             float verticalMovement = Input.GetAxisRaw("Vertical");
             playerRB.velocity = new Vector2(playerRB.velocity.x, verticalMovement * speed);
         }
         if (isStickyWallStuck == false && isWeightedDown == true)
         {
             playerRB.gravityScale = 1.0f;
+            playerAnimator.SetBool("Climbing", false);
+        }
+
+        if (Input.GetAxisRaw("Vertical") != 0)
+        {
+            playerAnimator.SetBool("ClimbMoving", true);
+        }
+        else if (Input.GetAxisRaw("Vertical") == 0)
+        {
+            playerAnimator.SetBool("ClimbMoving", false);
         }
     }
 
@@ -363,6 +375,8 @@ public class PlayerMovement : MonoBehaviour
 
             playerRB.velocity = new Vector2(0, 0);
 
+            
+
             Vector3 startLinePosition = transform.position;
 
             // Casts ray from player, goes in direction of mouse for distance 5, hits layermask 6 (dashCollide)
@@ -385,7 +399,7 @@ public class PlayerMovement : MonoBehaviour
                 point = airDashRay.GetPoint(dashStat);
             }
 
-            float dashDistance = Mathf.Sqrt(Mathf.Pow((playerRB.transform.position.x - point.x), 2) + Mathf.Pow((playerRB.transform.position.y - point.y), 2));
+            float dashDistance = Mathf.Sqrt(Mathf.Pow((playerRB.transform.position.x - point.x), 2) + Mathf.Pow((playerRB.transform.position.y - point.y), 2)) - 0.1f;
 
             RaycastHit2D[] enemiesHit = Physics2D.RaycastAll(playerRB.transform.position, swordPointer.transform.rotation * Vector2.right, dashDistance, enemyLayer);
             
@@ -434,6 +448,8 @@ public class PlayerMovement : MonoBehaviour
             }
 
             dashLineCoroutine = StartCoroutine(DrawDashLine(startLinePosition, endLinePosition));
+
+            dashSound.Play();
         }
     }
 
@@ -495,7 +511,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             sliceAnimator.SetTrigger("Slice");
-            //make slice flip if on left side and make it stay where you start it. also make it faster.
+            swingSound.Play();
 
             if (swordRay.collider != null)
             {

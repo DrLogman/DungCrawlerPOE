@@ -61,7 +61,7 @@ public class SwordPointer : MonoBehaviour
 
             if (controllers.Length > 0 && controllers.Length < 2)
             {
-                connected = true;
+                connected = false;
                 Debug.Log("Connected");
 
             }

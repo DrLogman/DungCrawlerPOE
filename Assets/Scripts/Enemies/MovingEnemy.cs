@@ -21,6 +21,7 @@ public class MovingEnemy : EnemyAI
     Vector3 enemySize;
     SpriteRenderer spriteRenderer;
     private DamageFlash damageFlash;
+    [SerializeField] AudioSource damageSound;
 
     private void Start()
     {
@@ -260,6 +261,8 @@ public class MovingEnemy : EnemyAI
 
         if (health > 0)
         {
+            damageSound.Play();
+
             Vector3 damageForce;
 
             if (playerTransform.position.x > transform.position.x)
@@ -280,7 +283,6 @@ public class MovingEnemy : EnemyAI
             {
                 playerMovement.ResetDash();
             }
-
 
             Instantiate(skull, new Vector3(transform.position.x, transform.position.y + 0.2f, transform.position.z), Quaternion.identity);
             Instantiate(deathParticle, transform.position, transform.rotation);
