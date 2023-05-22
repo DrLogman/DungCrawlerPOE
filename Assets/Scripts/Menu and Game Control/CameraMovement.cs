@@ -9,7 +9,7 @@ public class CameraMovement : MonoBehaviour
     public float smoothnessFactor;
     public Vector3 minValues, maxValues;
 
-    private void FixedUpdate()
+    private void Update()
     {
         Follow();
     }
