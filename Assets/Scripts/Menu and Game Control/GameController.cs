@@ -39,12 +39,15 @@ public class GameController : MonoBehaviour
                 scenesChosen.Add(sceneNames2[rand]);
             }
         }
+        scenesChosen.Add("ENDLEVEL");
+        
+
         currentSceneNumber = 0;
+        scenesChosen.Add("WIN");
 
         created = true;
 
-        scenesChosen.Add("ENDLEVEL");
-        scenesChosen.Add("WIN");
+        
     }
 
     public static void LoadNextScene()

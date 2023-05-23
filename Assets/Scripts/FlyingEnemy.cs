@@ -83,6 +83,7 @@ public class FlyingEnemy : EnemyAI
             {
                 GameController.staticPlayer.ResetDash();
             }
+            GameController.staticPlayer.AddHealth(2);
             Instantiate(deathParticle, transform.position, transform.rotation);
             Destroy(gameObject);
         }

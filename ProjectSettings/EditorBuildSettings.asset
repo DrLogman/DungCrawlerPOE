@@ -32,21 +32,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WIN.unity
     guid: f4d063d104255e34dbbd18e2efabb27d
-  - enabled: 0
-    path: Assets/Scenes/Scene1.unity
-    guid: 2e7266b59864f774bbee87d6ae845396
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/huh.unity
-    guid: eeff813be702f22469cab6efe17ceff0
   - enabled: 1
     path: Assets/Scenes/DeathScene.unity
     guid: 14d4c3ea551d1c348b9735c1930e6311

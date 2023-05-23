@@ -285,6 +285,7 @@ public class MovingEnemy : EnemyAI
                 playerMovement.ResetDash();
             }
 
+            playerMovement.AddHealth(2);
             Instantiate(skull, new Vector3(transform.position.x, transform.position.y + 0.2f, transform.position.z), Quaternion.identity);
             Instantiate(deathParticle, transform.position, transform.rotation);
             Destroy(gameObject);

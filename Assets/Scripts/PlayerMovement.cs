@@ -519,6 +519,15 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(DashBarFlash());
     }
 
+    public void AddHealth(float healthAdded)
+    {
+        health += healthAdded;
+        if (health > 100)
+        {
+            health = 100;
+        }
+    }
+
     public void ResetInvuln() //dont work :(
     {
         stopDashCooldown = true;
