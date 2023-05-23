@@ -12,8 +12,26 @@ EditorBuildSettings:
     path: Assets/Scenes/IntroLevel.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/(Int)Spiky.unity
+    guid: 11fa4949f15834ea5b9f8bb89231daa7
+  - enabled: 1
     path: Assets/Scenes/(Int)SpikesScene.unity
     guid: a789f58d9eac64849a9e0a70d6ce03b4
+  - enabled: 1
+    path: Assets/Scenes/(Beg)ParkourFocus.unity
+    guid: 53ee3c76a757b44ea92db0c573519d44
+  - enabled: 1
+    path: Assets/Scenes/(Adv)DrummerScene.unity
+    guid: cf08492c7f4ea014f8004a2ca5051514
+  - enabled: 1
+    path: Assets/Scenes/(Adv)JoblessScene.unity
+    guid: 9d384c5d55f59d040989d3370a5e07cd
+  - enabled: 1
+    path: Assets/Scenes/ENDLEVEL.unity
+    guid: b72df2fc4d881b047bd282e30ef856d1
+  - enabled: 1
+    path: Assets/Scenes/WIN.unity
+    guid: f4d063d104255e34dbbd18e2efabb27d
   - enabled: 0
     path: Assets/Scenes/Scene1.unity
     guid: 2e7266b59864f774bbee87d6ae845396

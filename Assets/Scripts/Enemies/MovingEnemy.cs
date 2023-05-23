@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MovingEnemy : EnemyAI
 {
-    [SerializeField] float chaseMinDistance, strength;
+    [SerializeField] float chaseMinDistance, strength, bonusWait;
     [SerializeField] Transform fallCollider, touchCollider;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] PlayerMovement playerMovement;
@@ -234,6 +234,7 @@ public class MovingEnemy : EnemyAI
                 yield return new WaitForSeconds(1.8f);
                 StartCoroutine(ShootProjectile());
                 yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(bonusWait);
                 canShoot = true;
             }
             else

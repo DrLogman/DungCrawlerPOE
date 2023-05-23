@@ -10,6 +10,8 @@ public class Bombs : MonoBehaviour
     [SerializeField] bool isDestroyed, isRespawnable, isNotRespawnable, isProjectile;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] CircleCollider2D circleCollider;
+    [SerializeField] GameObject particle;
+    [SerializeField] AudioSource bombSound;
     void Start()
     {
         rend = this.gameObject.GetComponent<SpriteRenderer>();
@@ -19,10 +21,10 @@ public class Bombs : MonoBehaviour
     }
     private void Update()
     {
-        if(isDestroyed == true)
-        {
+       if(isDestroyed == true)
+       {
             StartCoroutine(RespawnBomb());
-        }
+       }
        if(isProjectile == true)
         {
             DestroyOnGround();
@@ -100,6 +102,7 @@ public class Bombs : MonoBehaviour
         {
             Debug.Log("Nothing");
             SplashDamageObjects();
+            
             Destroy(gameObject);
         }
     }
@@ -109,6 +112,9 @@ public class Bombs : MonoBehaviour
     }
     public void SplashDamageObjects()
     {
+        Instantiate(particle, transform.position, transform.rotation);
+        bombSound.Play();
+
         if (splashRange > 0)
         {
             circleCollider.radius = damageRadius;

@@ -9,16 +9,15 @@ public class MenuMusic : MonoBehaviour
 
     void Start()
     {
-        menuStart.Play();
-        
+
+        StartCoroutine(PlaySounds());
     }
 
-    private void Update()
+    IEnumerator PlaySounds()
     {
-        if (!menuStart.isPlaying && !menuCont.isPlaying)
-        {
-            menuCont.Play();
-        }
+        menuStart.Play();
+        yield return new WaitForSeconds(menuStart.clip.length - 1);
+        menuCont.Play();
     }
 
 }

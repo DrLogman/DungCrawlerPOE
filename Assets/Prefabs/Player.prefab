@@ -618,6 +618,7 @@ MonoBehaviour:
   rightCollider: {fileID: 3299435162898578227}
   sliceTransform: {fileID: 3299435162678334784}
   healthBarImage: {fileID: 0}
+  dashBarImage: {fileID: 0}
   lastWallSide: 
   playerDirection: 
   invulnerable: 0
@@ -638,6 +639,8 @@ MonoBehaviour:
   swingSound: {fileID: 7698407905551879382}
   dashSound: {fileID: 5688737534923446834}
   critSound: {fileID: 5913561503886958955}
+  cyan: {r: 0, g: 1, b: 0.94117653, a: 1}
+  yellow: {r: 1, g: 0.8874891, b: 0, a: 1}
 --- !u!120 &3299435164292576166
 LineRenderer:
   m_ObjectHideFlags: 0

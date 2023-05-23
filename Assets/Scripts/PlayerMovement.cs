@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] SwordPointer swordPointer;
     [SerializeField] LayerMask dashLayer, enemyLayer;
     [SerializeField] Transform groundCheck, leftCollider, rightCollider, sliceTransform;
-    public Image healthBarImage;
+    public Image healthBarImage, dashBarImage;
     Rigidbody2D playerRB;
     private bool canMove, isOnWall, isGrounded, doubleJump, wallJump, wallJumpReset, canSlice;
     private float lastYPos;
@@ -28,9 +28,12 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource critSound;
     Animator playerAnimator;
     private DamageFlash damageFlash;
+    float dashCooldownValue;
+    [SerializeField] Color cyan, yellow;
 
     private void Start()
     {
+        
         isDead = false;
         damageFlash = GetComponent<DamageFlash>();
         playerAnimator = GetComponent<Animator>();
@@ -47,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
         canExit = false;
+        dashCooldownValue = 1;
     }
     private void Update()
     {
@@ -66,11 +70,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         UpdateHealthBar();
+        UpdateDashBar();
         if (dashCoroutine != null && dashLineCoroutine != null && stopDashCooldown == true)
         {
             StopCoroutine(dashCoroutine);
             StopCoroutine(dashLineCoroutine);
             stopDashCooldown = false;
+        }
+        if(dashActive)
+        {
+            dashCooldownValue = 1;
         }
     }
 
@@ -125,15 +134,23 @@ public class PlayerMovement : MonoBehaviour
         healthBarImage.fillAmount = Mathf.Clamp(health / maxHP, 0, 1f);
     }
 
+    public void UpdateDashBar()
+    {
+        dashBarImage.fillAmount = Mathf.Clamp(dashCooldownValue / 1, 0, 1f);
+    }
+
     private void CheckPlayerDirection()
     {
-        if (playerRB.velocity.x > 0.1)
+        if(!playerAnimator.GetBool("WallSlide") && !playerAnimator.GetBool("Swinging"))
         {
-            playerDirection = "right";
-        }
-        if (playerRB.velocity.x < -0.1)
-        {
-            playerDirection = "left";
+            if (playerRB.velocity.x > 0.1)
+            {
+                playerDirection = "right";
+            }
+            if (playerRB.velocity.x < -0.1)
+            {
+                playerDirection = "left";
+            }
         }
     }
 
@@ -258,7 +275,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerAnimator.SetBool("WallSlide", true);
             }
-            
+
+            playerDirection = "left";
             GetComponent<SpriteRenderer>().flipX = false;
         }
         else if(rightWall != null)
@@ -277,6 +295,7 @@ public class PlayerMovement : MonoBehaviour
                 playerAnimator.SetBool("WallSlide", true);
             }
 
+            playerDirection = "right";
             GetComponent<SpriteRenderer>().flipX = true;
         }
         else
@@ -335,6 +354,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 StartCoroutine(PlayerKnockback(damageForce, 3));
                 damageFlash.CallDamageFlash();
+                playerAnimator.SetBool("Dead", true);
                 StartCoroutine(GameOver());
             }
         }   
@@ -455,8 +475,16 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator DashCooldown()
     {
-        yield return new WaitForSeconds(dashCooldown);
+        dashCooldownValue = 0;
+        for(int i = 0; i < 100; i++)
+        {
+            yield return new WaitForSeconds(dashCooldown/100);
+            dashCooldownValue += 0.01f;
+        }
+
+        
         dashActive = true;
+        StartCoroutine(DashBarFlash());
     }
 
     public IEnumerator SliceCooldown()
@@ -483,9 +511,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void ResetDash() //dont work :(
     {
+        
         stopDashCooldown = true;
         Debug.Log("REeseyt");
         dashActive = true;
+        dashCooldownValue = 1;
+        StartCoroutine(DashBarFlash());
     }
 
     public void ResetInvuln() //dont work :(
@@ -512,7 +543,14 @@ public class PlayerMovement : MonoBehaviour
 
             sliceAnimator.SetTrigger("Slice");
             swingSound.Play();
-
+            StartCoroutine(SwingPlayerAnimation());
+            if(transform.position.x - swordPointer.mousePos.x < 0) 
+            {
+                playerDirection = "right";
+            } else
+            {
+                playerDirection = "left";
+            }
             if (swordRay.collider != null)
             {
                 if (swordRay.collider.gameObject.GetComponent<MovingEnemy>() != null)
@@ -532,6 +570,20 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(SliceCooldown());
 
         }
+    }
+
+    IEnumerator DashBarFlash()
+    {
+        dashBarImage.color = yellow;
+        yield return new WaitForSeconds(0.1f);
+        dashBarImage.color = cyan;
+    }
+
+    IEnumerator SwingPlayerAnimation()
+    {
+        playerAnimator.SetBool("Swinging", true);
+        yield return new WaitForSeconds(0.15f);
+        playerAnimator.SetBool("Swinging", false);
     }
 
     IEnumerator DrawDashLine(Vector3 start, Vector3 end)

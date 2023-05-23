@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2508985806134847633}
   - component: {fileID: 2508985806134847634}
   - component: {fileID: 2508985806134847635}
+  - component: {fileID: 4282969809437006863}
   m_Layer: 6
   m_Name: Ghost Platform
   m_TagString: Untagged
@@ -54,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 716d3161840519b409cc8bd3b991564d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -100,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rend: {fileID: 2508985806134847633}
   waitTime: 1
-  respawnTime: 3
+  respawnTime: 5
   isMissing: 0
 --- !u!61 &2508985806134847635
 BoxCollider2D:
@@ -128,3 +129,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.896048, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4282969809437006863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2508985806134847644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1654d699a6db0a14aa78b9f665a61576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashTime: 0.25

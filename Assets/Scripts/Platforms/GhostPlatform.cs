@@ -8,8 +8,10 @@ public class GhostPlatform : MonoBehaviour
     [SerializeField] float waitTime;
     [SerializeField] float respawnTime;
     [SerializeField] bool isMissing;
+    private DamageFlash df;
     void Start()
     {
+        df = GetComponent<DamageFlash>();
         rend = this.gameObject.GetComponent<SpriteRenderer>();
         rend.enabled = true;
     }
@@ -27,7 +29,7 @@ public class GhostPlatform : MonoBehaviour
         
         
             StartCoroutine(DespawnPlatform());
-        
+            df.CallGhostDamageFlash();
     }
     
     private IEnumerator DespawnPlatform()
@@ -46,5 +48,6 @@ public class GhostPlatform : MonoBehaviour
         yield return new WaitForSeconds(respawnTime);
         GetComponent<BoxCollider2D>().enabled = true;
         rend.enabled = true;
+        df.UndoGhost();
     }
 }

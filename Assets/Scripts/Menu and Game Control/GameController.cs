@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public static string[] sceneNames = {"(Int)SpikesScene"};
+    public static string[] sceneNames = { "(Beg)ParkourFocus", "(Int)Spiky"};
+    public static string[] sceneNames2 = { "(Adv)DrummerScene", "(Adv)JoblessScene" };
     public static float savedPlayerHealth = 100;
     public static List<string> scenesChosen = new List<string>();
     static int currentSceneNumber = 0;
@@ -14,12 +15,15 @@ public class GameController : MonoBehaviour
 
     public static void RandomSceneList()
     {
+        savedPlayerHealth = 100;
+
         if(scenesChosen != null)
         {
             scenesChosen.Clear();
         }
         scenesChosen.Add("IntroLevel");
-        while(scenesChosen.Count < sceneNames.Length + 1)
+        scenesChosen.Add("(Int)SpikesScene");
+        while (scenesChosen.Count < sceneNames.Length + 2)
         {
             int rand = (int)(Random.Range(0, sceneNames.Length));
             if (!scenesChosen.Contains(sceneNames[rand]))
@@ -27,9 +31,20 @@ public class GameController : MonoBehaviour
                 scenesChosen.Add(sceneNames[rand]);
             }
         }
+        while (scenesChosen.Count < sceneNames2.Length + sceneNames.Length + 2)
+        {
+            int rand = (int)(Random.Range(0, sceneNames2.Length));
+            if (!scenesChosen.Contains(sceneNames2[rand]))
+            {
+                scenesChosen.Add(sceneNames2[rand]);
+            }
+        }
         currentSceneNumber = 0;
 
         created = true;
+
+        scenesChosen.Add("ENDLEVEL");
+        scenesChosen.Add("WIN");
     }
 
     public static void LoadNextScene()
