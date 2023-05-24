@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject hitParticle, dashParticle;
     LineRenderer lineRenderer;
     public float health;
-    [SerializeField] AudioSource jumpSound, doubleJumpSound, wallJumpSound, landSound, swingSound, dashSound;
+    [SerializeField] AudioSource jumpSound, doubleJumpSound, wallJumpSound, landSound, swingSound, dashSound, damageSound;
     public AudioSource critSound;
     Animator playerAnimator;
     private DamageFlash damageFlash;
@@ -315,7 +315,8 @@ public class PlayerMovement : MonoBehaviour
             
             Vector2 damageForce;
             health -= damageTaken;
-            if(invulnCoroutine != null)
+            damageSound.Play();
+            if (invulnCoroutine != null)
             {
                 StopCoroutine(invulnCoroutine);
             }
