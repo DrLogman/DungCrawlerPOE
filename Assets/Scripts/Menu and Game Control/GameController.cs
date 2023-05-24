@@ -17,7 +17,9 @@ public class GameController : MonoBehaviour
     {
         savedPlayerHealth = 100;
 
-        if(scenesChosen != null)
+        currentSceneNumber = 0;
+
+        if (scenesChosen != null)
         {
             scenesChosen.Clear();
         }
@@ -40,10 +42,6 @@ public class GameController : MonoBehaviour
             }
         }
         scenesChosen.Add("ENDLEVEL");
-        
-
-        currentSceneNumber = 0;
-        scenesChosen.Add("WIN");
 
         created = true;
 
@@ -54,6 +52,11 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene(scenesChosen[currentSceneNumber]);
         currentSceneNumber++;
+    }
+
+    public static void LoadEnd()
+    {
+        SceneManager.LoadScene("END");
     }
 
     public static void GameOver()

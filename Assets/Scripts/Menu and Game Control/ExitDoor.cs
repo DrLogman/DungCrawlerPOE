@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExitDoor : MonoBehaviour
+public class ExitDoorFinal : MonoBehaviour
 {
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] SpriteRenderer buttonSprite;
@@ -17,7 +17,7 @@ public class ExitDoor : MonoBehaviour
                 if (Input.GetButtonDown("Fire3"))
                 {
                     GameController.savedPlayerHealth = playerMovement.health;
-                    GameController.LoadNextScene();
+                    GameController.LoadEnd();
                 }
             }
             else
