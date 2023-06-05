@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
 
     public static void LoadEnd()
     {
-        SceneManager.LoadScene("END");
+        SceneManager.LoadScene("WIN");
     }
 
     public static void GameOver()

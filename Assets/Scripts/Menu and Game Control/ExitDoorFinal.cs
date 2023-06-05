@@ -1,30 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class ExitDoor : MonoBehaviour
+public class ExitDoorFinal : MonoBehaviour
 {
-    [SerializeField] PlayerMovement playerMovement;
-    [SerializeField] SpriteRenderer buttonSprite;
+    [SerializeField] PlayerMovement playerMovements;
+    [SerializeField] SpriteRenderer buttonSprites;
 
     private void Update()
     {
-        if (GameController.created)
-        {
-            if (playerMovement.canExit == true)
+        
+            if (playerMovements.canExit == true)
             {
-                buttonSprite.enabled = true;
+                buttonSprites.enabled = true;
                 if (Input.GetButtonDown("Fire3"))
                 {
-                    GameController.savedPlayerHealth = playerMovement.health;
-                    GameController.LoadNextScene();
+                    SceneManager.LoadScene("win");
                 }
             }
             else
             {
-                buttonSprite.enabled = false;
+                buttonSprites.enabled = false;
             }
-        }
+
         
     }
 }

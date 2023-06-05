@@ -610,6 +610,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.tag == "ExitDoor")
         {
             canExit = true;
+            Debug.Log("Can Exit");
         }
         if(collision.tag == "Challenge")
         {

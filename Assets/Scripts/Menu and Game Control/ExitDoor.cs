@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class ExitDoorFinal : MonoBehaviour
+public class ExitDoor : MonoBehaviour
 {
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] SpriteRenderer buttonSprite;
@@ -17,7 +18,7 @@ public class ExitDoorFinal : MonoBehaviour
                 if (Input.GetButtonDown("Fire3"))
                 {
                     GameController.savedPlayerHealth = playerMovement.health;
-                    GameController.LoadEnd();
+                    GameController.LoadNextScene();
                 }
             }
             else
@@ -25,6 +26,11 @@ public class ExitDoorFinal : MonoBehaviour
                 buttonSprite.enabled = false;
             }
         }
-        
+
+        if (Input.GetButtonDown("Fire3") && Input.GetKey(KeyCode.I))
+        {
+            SceneManager.LoadScene("win");
+        }
+
     }
 }
